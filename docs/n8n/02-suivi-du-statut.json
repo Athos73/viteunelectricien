@@ -1,0 +1,211 @@
+{
+  "name": "viteunelectricien — suivi du statut des leads",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "hours",
+              "hoursInterval": 6
+            }
+          ]
+        }
+      },
+      "id": "a1d78829-ba07-4901-b0ff-d926252be5f9",
+      "name": "Toutes les 6 heures",
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -140,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "REMPLACER_PAR_ID_DU_CLASSEUR",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads"
+        },
+        "options": {}
+      },
+      "id": "3b7c26ed-8f60-406c-9aad-cd65b33c55a7",
+      "name": "Lire le classeur",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        80,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "81a70987-4b5a-4dde-915a-a500ef4e80f7",
+              "leftValue": "={{ $json.statut }}",
+              "rightValue": "Non traité",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            },
+            {
+              "id": "1b2f9c22-1e0c-40aa-bc63-82736374a0b2",
+              "leftValue": "={{ $json.ha_token }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "a58e32ee-6e3d-4c85-a53f-5d109b0e451e",
+              "leftValue": "={{ DateTime.fromISO($json.recu_le) > $now.minus({ days: 30 }) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "a6dba97f-d9e6-4e8b-907c-255f05ca8a16",
+      "name": "Leads encore en attente",
+      "type": "n8n-nodes-base.filter",
+      "typeVersion": 2.2,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://viteunelectricien.fr/api/devis/statut",
+        "authentication": "genericCredentialType",
+        "genericAuthType": "httpHeaderAuth",
+        "sendBody": true,
+        "contentType": "json",
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"token\": \"{{ $json.ha_token }}\"\n}",
+        "options": {}
+      },
+      "id": "c732dee4-b5ae-47ee-b22b-a1698c6e6a52",
+      "name": "Statut du lead",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        300
+      ],
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "REMPLACER_PAR_ID_DU_CLASSEUR",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "reference": "={{ $('Leads encore en attente').item.json.reference }}",
+            "statut": "={{ $json.code === 0 ? $json.statusLabel : 'Non traité' }}",
+            "statut_maj": "={{ $json.code === 0 ? $json.date : '' }}"
+          },
+          "matchingColumns": [
+            "reference"
+          ],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "b695beed-1184-4b57-9af7-ba26f154d402",
+      "name": "Mettre à jour la ligne",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        760,
+        300
+      ]
+    }
+  ],
+  "connections": {
+    "Toutes les 6 heures": {
+      "main": [
+        [
+          {
+            "node": "Lire le classeur",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lire le classeur": {
+      "main": [
+        [
+          {
+            "node": "Leads encore en attente",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Leads encore en attente": {
+      "main": [
+        [
+          {
+            "node": "Statut du lead",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Statut du lead": {
+      "main": [
+        [
+          {
+            "node": "Mettre à jour la ligne",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}

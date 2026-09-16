@@ -108,6 +108,32 @@ Réponses :
 `reference` est aussi le `supplierleadid` envoyé à HelloArtisan : c'est la clé
 de corrélation entre le site, n8n et la plateforme.
 
+## L'endpoint `/api/devis/statut`
+
+`POST https://viteunelectricien.fr/api/devis/statut`, authentifié par
+`Authorization: Bearer <N8N_LEAD_WEBHOOK_TOKEN>` — le même jeton que celui du
+webhook n8n. Il existe pour que l'orchestration n'ait pas à porter les
+identifiants HelloArtisan.
+
+```json
+{ "token": "2111_6aaaf615a50230.79608838" }
+```
+
+`supplierLeadId` est accepté à la place de `token`. La réponse est recopiée
+telle quelle depuis `POST /json/lead/status` (`code`, `statusLabel`, `date`…) :
+un flux écrit contre l'API d'origine fonctionne sans modification.
+
+| Statut | Cas |
+| --- | --- |
+| 200 | Réponse de la plateforme transmise, y compris ses `code` non nuls |
+| 400 | Corps illisible, ou ni `token` ni `supplierLeadId` |
+| 401 | Jeton absent ou invalide (comparaison à durée constante) |
+| 502 / 503 | Plateforme injoignable, ou `N8N_LEAD_WEBHOOK_TOKEN` absent |
+
+Sans `N8N_LEAD_WEBHOOK_TOKEN` dans l'environnement, l'endpoint se **ferme**
+(503) au lieu de s'ouvrir : une variable oubliée ne doit pas exposer le statut
+des leads.
+
 ## Recopie vers n8n
 
 Si `N8N_LEAD_WEBHOOK_URL` est défini, chaque import confirmé est recopié en

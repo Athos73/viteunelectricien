@@ -1,0 +1,341 @@
+{
+  "name": "viteunelectricien — réception des leads",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "devis",
+        "authentication": "headerAuth",
+        "responseMode": "onReceived",
+        "options": {}
+      },
+      "id": "3b2208e1-dca5-47b4-8ccd-7522390c525b",
+      "name": "Réception du lead",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -140,
+        300
+      ],
+      "webhookId": "6f35f9d9-1e63-48d0-9ce0-4ec649959609"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "c04218fc-4845-48c3-a8d9-8b213a476250",
+              "name": "reference",
+              "value": "={{ $json.body.reference }}",
+              "type": "string"
+            },
+            {
+              "id": "ec6b968c-4ada-4c22-ae45-10dea98acf03",
+              "name": "recu_le",
+              "value": "={{ $json.body.recuLe }}",
+              "type": "string"
+            },
+            {
+              "id": "1379a175-4672-49e1-aa9b-169a953b5c54",
+              "name": "source",
+              "value": "={{ $json.body.source }}",
+              "type": "string"
+            },
+            {
+              "id": "1f706e79-2ffe-4a3b-a62b-e2c4bfdb5bbf",
+              "name": "statut",
+              "value": "={{ $json.body.helloartisan.code === 0 ? 'Non traité' : ($json.body.helloartisan.code === 5 ? 'Doublon' : 'Échec') }}",
+              "type": "string"
+            },
+            {
+              "id": "5b237473-ed6f-4378-bf2c-605d34741421",
+              "name": "statut_maj",
+              "value": "",
+              "type": "string"
+            },
+            {
+              "id": "e03a982e-3626-44a8-ae7a-c14325973998",
+              "name": "civilite",
+              "value": "={{ $json.body.lead.civility || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "93b056d6-af83-4df3-bb05-c7230239dc72",
+              "name": "prenom",
+              "value": "={{ $json.body.lead.firstname || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "e67aec2f-305c-45fa-b408-8787ec4ac170",
+              "name": "nom",
+              "value": "={{ $json.body.lead.lastname }}",
+              "type": "string"
+            },
+            {
+              "id": "376166b2-0e61-49ab-aa0e-92bfc49ae627",
+              "name": "email",
+              "value": "={{ $json.body.lead.email }}",
+              "type": "string"
+            },
+            {
+              "id": "a9488ce7-7a7e-4aec-aaea-87ffcfec8c63",
+              "name": "telephone",
+              "value": "={{ $json.body.lead.cellphone || $json.body.lead.landline }}",
+              "type": "string"
+            },
+            {
+              "id": "363c48f7-958b-4522-acaa-4a0c112eb388",
+              "name": "code_postal",
+              "value": "={{ $json.body.lead.zipcode }}",
+              "type": "string"
+            },
+            {
+              "id": "1ba851a0-fed2-4487-8ea7-a001434d9809",
+              "name": "ville",
+              "value": "={{ $json.body.lead.city || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "92ff312a-f666-45e3-9036-c5e42ea13ebc",
+              "name": "adresse",
+              "value": "={{ $json.body.lead.address || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "656cea3e-551e-40d3-b382-5d60e58dc3f7",
+              "name": "metier",
+              "value": "={{ $json.body.lead.workdescription }}",
+              "type": "string"
+            },
+            {
+              "id": "2b169e11-adae-4bc1-bde2-44e5d4525382",
+              "name": "worktype",
+              "value": "={{ $json.body.lead.worktype }}",
+              "type": "string"
+            },
+            {
+              "id": "e8b9daac-61bc-4a41-b6ee-bb38cdf0337d",
+              "name": "occupation",
+              "value": "={{ ({ 1: 'Propriétaire', 2: 'Locataire', 3: 'Propriétaire bailleur', 4: 'Autre' })[$json.body.lead.isowner] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "9adaebda-5e9c-4410-b5c0-81d7df75250c",
+              "name": "logement",
+              "value": "={{ ({ 1: 'Maison', 2: 'Appartement', 3: 'Local professionnel', 4: 'Autre' })[$json.body.lead.housingtype] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "332b3b6d-604d-4fef-8a80-0a6c207fd27e",
+              "name": "delai",
+              "value": "={{ ({ 1: 'Dès que possible', 2: 'Sous 1 mois', 3: 'Sous 3 mois', 4: 'Dans 3 à 6 mois', 5: 'Plus de 6 mois' })[$json.body.lead.delay] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "fd9c3300-0f62-45ea-bfa1-9ac43f111aaf",
+              "name": "budget",
+              "value": "={{ ({ 1: 'Moins de 1 500 €', 2: '1 500 à 6 000 €', 3: 'Plus de 6 000 €', 4: 'Ne sait pas' })[$json.body.lead.budget] || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "5d469b3d-0172-48a8-8c27-76b0024c86f7",
+              "name": "commentaire",
+              "value": "={{ $json.body.lead.comment || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "c4c033aa-b876-43e4-aa00-145267ce0a72",
+              "name": "ha_code",
+              "value": "={{ $json.body.helloartisan.code }}",
+              "type": "string"
+            },
+            {
+              "id": "16a1b326-330a-42f8-8f6d-3153997a7930",
+              "name": "ha_message",
+              "value": "={{ $json.body.helloartisan.message || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "e67aecbd-ec39-47df-85a7-3d80b6caa830",
+              "name": "ha_id",
+              "value": "={{ $json.body.helloartisan.id || '' }}",
+              "type": "string"
+            },
+            {
+              "id": "ee46391b-8e99-4bbf-b2af-5cadc58acc86",
+              "name": "ha_token",
+              "value": "={{ $json.body.helloartisan.token || '' }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "5ef25925-23e2-4249-810c-8b6e687a2780",
+      "name": "Préparer la ligne",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        80,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "REMPLACER_PAR_ID_DU_CLASSEUR",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Leads"
+        },
+        "columns": {
+          "mappingMode": "autoMapInputData",
+          "value": {},
+          "matchingColumns": [],
+          "schema": []
+        },
+        "options": {}
+      },
+      "id": "7d545ed4-f42b-47ec-a41a-685804e3197c",
+      "name": "Archiver dans Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        300,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "loose",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f6543b83-99e3-4a7c-9dd3-0874dfc0acaf",
+              "leftValue": "={{ $('Préparer la ligne').item.json.ha_code }}",
+              "rightValue": 0,
+              "operator": {
+                "type": "number",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "03d359c5-abdb-46a7-8163-7757d1984ed3",
+      "name": "Lead accepté ?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        520,
+        300
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "REMPLACER@votredomaine.fr",
+        "toEmail": "contact.fencium@gmail.com",
+        "subject": "=Nouveau devis — {{ $('Préparer la ligne').item.json.metier }} à {{ $('Préparer la ligne').item.json.ville }} ({{ $('Préparer la ligne').item.json.code_postal }})",
+        "emailFormat": "text",
+        "text": "=Une nouvelle demande de devis vient d'être transmise à HelloArtisan.\n\n  Référence   : {{ $('Préparer la ligne').item.json.reference }}\n  Reçue le    : {{ $('Préparer la ligne').item.json.recu_le }}\n  Page        : {{ $('Préparer la ligne').item.json.source }}\n\n  Travaux     : {{ $('Préparer la ligne').item.json.metier }}\n  Délai       : {{ $('Préparer la ligne').item.json.delai }}\n  Budget      : {{ $('Préparer la ligne').item.json.budget }}\n  Logement    : {{ $('Préparer la ligne').item.json.logement }} — {{ $('Préparer la ligne').item.json.occupation }}\n\n  {{ $('Préparer la ligne').item.json.civilite }} {{ $('Préparer la ligne').item.json.prenom }} {{ $('Préparer la ligne').item.json.nom }}\n  {{ $('Préparer la ligne').item.json.telephone }}\n  {{ $('Préparer la ligne').item.json.email }}\n  {{ $('Préparer la ligne').item.json.adresse }}, {{ $('Préparer la ligne').item.json.code_postal }} {{ $('Préparer la ligne').item.json.ville }}\n\n  Commentaire : {{ $('Préparer la ligne').item.json.commentaire }}\n\n  Token HelloArtisan : {{ $('Préparer la ligne').item.json.ha_token }}",
+        "options": {}
+      },
+      "id": "ba0e73e6-db7e-494c-94ba-09e9f63dfd22",
+      "name": "Notifier le nouveau lead",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        760,
+        200
+      ]
+    },
+    {
+      "parameters": {
+        "fromEmail": "REMPLACER@votredomaine.fr",
+        "toEmail": "contact.fencium@gmail.com",
+        "subject": "=Lead refusé par HelloArtisan — code {{ $('Préparer la ligne').item.json.ha_code }} ({{ $('Préparer la ligne').item.json.statut }})",
+        "emailFormat": "text",
+        "text": "=HelloArtisan a refusé un lead. La ligne est archivée avec le statut « {{ $('Préparer la ligne').item.json.statut }} ».\n\n  Référence : {{ $('Préparer la ligne').item.json.reference }}\n  Code      : {{ $('Préparer la ligne').item.json.ha_code }} — {{ $('Préparer la ligne').item.json.ha_message }}\n  Travaux   : {{ $('Préparer la ligne').item.json.metier }} ({{ $('Préparer la ligne').item.json.code_postal }})\n  Contact   : {{ $('Préparer la ligne').item.json.nom }} / {{ $('Préparer la ligne').item.json.telephone }}\n\nRappel des codes : 4 = aucun artisan acheteur sur la zone, 5 = doublon\n(même contact + même métier, rien n'a été créé), 9 = incident technique\n— HelloArtisan replanifie l'import de son côté, aucune action requise.",
+        "options": {}
+      },
+      "id": "443d973e-6560-416b-b775-5e597aec81da",
+      "name": "Alerter sur l'échec",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        760,
+        400
+      ]
+    }
+  ],
+  "connections": {
+    "Réception du lead": {
+      "main": [
+        [
+          {
+            "node": "Préparer la ligne",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Préparer la ligne": {
+      "main": [
+        [
+          {
+            "node": "Archiver dans Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Archiver dans Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Lead accepté ?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Lead accepté ?": {
+      "main": [
+        [
+          {
+            "node": "Notifier le nouveau lead",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Alerter sur l'échec",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "pinData": {}
+}
