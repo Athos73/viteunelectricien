@@ -108,6 +108,7 @@ Réponses :
 `reference` est aussi le `supplierleadid` envoyé à HelloArtisan : c'est la clé
 de corrélation entre le site, n8n et la plateforme.
 
+<<<<<<< HEAD
 ## L'endpoint `/api/devis/statut`
 
 `POST https://viteunelectricien.fr/api/devis/statut`, authentifié par
@@ -134,6 +135,8 @@ Sans `N8N_LEAD_WEBHOOK_TOKEN` dans l'environnement, l'endpoint se **ferme**
 (503) au lieu de s'ouvrir : une variable oubliée ne doit pas exposer le statut
 des leads.
 
+=======
+>>>>>>> 6083e3a4491bf49c05faf6921cdb09cc7bf7839f
 ## Recopie vers n8n
 
 Si `N8N_LEAD_WEBHOOK_URL` est défini, chaque import confirmé est recopié en
