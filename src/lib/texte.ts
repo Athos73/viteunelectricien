@@ -98,6 +98,3 @@ export function descriptionVille(commune: Commune, page: number): string {
 
 export const capitale = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
-export function motCleWidget(commune: Commune): string {
-  return `${capitale(metier.labelSingulier)} ${commune.nom} ${commune.code_postal}`;
-}
