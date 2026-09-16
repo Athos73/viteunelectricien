@@ -64,22 +64,32 @@ export default function Page() {
 
         <section>
           <h2 className="text-lg font-semibold text-slate-900">
-            Formulaire de devis et service tiers
+            Formulaire de devis
           </h2>
           <p className="mt-2">
-            Le formulaire de demande de devis est fourni par un prestataire
-            tiers (Vite un Devis). Les informations que vous y saisissez —
-            description du projet, code postal, coordonnées — sont collectées
-            et traitées par ce prestataire, qui les transmet à des
-            professionnels susceptibles de vous répondre. Ce formulaire charge
-            des ressources depuis les domaines viteundevis.com et
-            googleapis.com, susceptibles de déposer des traceurs.
+            Le formulaire de demande de devis est hébergé par nos soins : il ne
+            charge aucune ressource tierce et ne dépose aucun traceur. Les
+            informations que vous y saisissez — type de travaux, situation
+            d&apos;occupation, type de logement, échéance, budget, description
+            du projet, civilité, nom, prénom, adresse e-mail, téléphone,
+            adresse et code postal du chantier — ne sont transmises
+            qu&apos;après validation du formulaire.
           </p>
           <p className="mt-2">
-            Ce module n&apos;est chargé que lorsqu&apos;il devient visible à
-            l&apos;écran. Pour connaître le détail du traitement opéré par ce
-            prestataire, reportez-vous à sa propre politique de
-            confidentialité.
+            La base légale du traitement est votre consentement, recueilli par
+            la case à cocher précédant l&apos;envoi. Les données sont
+            transmises à notre partenaire HelloArtisan (groupe Batiweb), qui
+            les met en relation avec les professionnels de votre secteur
+            susceptibles d&apos;établir les devis demandés. Nous conservons
+            pour notre part la référence de la demande et son suivi technique.
+          </p>
+          <p className="mt-2">
+            Aucune donnée n&apos;est envoyée tant que vous n&apos;avez pas
+            validé le formulaire : les étapes précédentes restent dans votre
+            navigateur. Pour connaître le détail du traitement opéré par
+            HelloArtisan, reportez-vous à sa propre politique de
+            confidentialité. Vous pouvez demander la suppression de votre
+            demande à l&apos;adresse de contact ci-dessous.
           </p>
         </section>
 

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DevisWidget } from "@/components/DevisWidget";
+import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { FicheCard } from "@/components/FicheCard";
 import { Fil } from "@/components/Fil";
 import { Icone } from "@/components/Icone";
@@ -24,7 +24,7 @@ import {
   urlVille,
   urlVillePage,
 } from "@/lib/site";
-import { capitale, comptageMetier, introVille, motCleWidget } from "@/lib/texte";
+import { capitale, comptageMetier, introVille } from "@/lib/texte";
 
 /**
  * Prestations typiques du métier : contenu éditorial générique, jamais une
@@ -180,7 +180,7 @@ export function PageVille({ commune, page }: { commune: Commune; page: number })
         </section>
       )}
 
-      {/* Widget de devis. */}
+      {/* Formulaire de devis. */}
       <section
         id="devis"
         className="scroll-mt-24 border-b border-hairline/80 bg-ink py-14"
@@ -195,7 +195,10 @@ export function PageVille({ commune, page }: { commune: Commune; page: number })
             locaux.
           </p>
           <div className="mt-8 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
-            <DevisWidget motCle={motCleWidget(commune)} />
+            <FormulaireDevis
+              source={`ville:${commune.slug}`}
+              ville={{ nom: commune.nom, codePostal: commune.code_postal }}
+            />
           </div>
         </Conteneur>
       </section>

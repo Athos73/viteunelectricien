@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { DevisWidget } from "@/components/DevisWidget";
+import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { Icone } from "@/components/Icone";
 import { Recherche } from "@/components/Recherche";
 import {
@@ -264,7 +264,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* Appel à l'action : le widget partenaire. */}
+      {/* Appel à l'action : le formulaire de devis. */}
       <section id="devis" className="scroll-mt-24 bg-ink py-20">
         <Conteneur className="flex flex-col items-center">
           <Pastille ton="bleu">Gratuit et sans engagement</Pastille>
@@ -277,7 +277,7 @@ export default function Page() {
             secteur vous recontactent directement.
           </p>
           <div className="mt-10 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
-            <DevisWidget motCle={`${metier.labelSingulier} France`} />
+            <FormulaireDevis source="accueil" />
           </div>
         </Conteneur>
       </section>

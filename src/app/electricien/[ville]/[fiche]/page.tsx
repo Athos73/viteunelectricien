@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { DevisWidget } from "@/components/DevisWidget";
+import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { FicheCard } from "@/components/FicheCard";
 import { Fil } from "@/components/Fil";
 import { Icone } from "@/components/Icone";
@@ -284,8 +284,9 @@ export default async function Page({ params }: Props) {
             gratuitement.
           </p>
           <div className="mt-8 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
-            <DevisWidget
-              motCle={`${capitale(metier.labelSingulier)} ${commune.nom} ${commune.code_postal}`}
+            <FormulaireDevis
+              source={`fiche:${commune.slug}/${f.slug}`}
+              ville={{ nom: commune.nom, codePostal: commune.code_postal }}
             />
           </div>
         </Conteneur>
