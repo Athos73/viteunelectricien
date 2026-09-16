@@ -140,6 +140,8 @@ async function main() {
   }
 
   const db = new Database(DB_PATH);
+  // WAL pendant l'écriture : les insertions en masse y sont nettement plus
+  // rapides. La base repasse en mode « delete » avant fermeture (voir plus bas).
   db.pragma("journal_mode = WAL");
   db.exec(`
     DROP TABLE IF EXISTS regions;
@@ -363,6 +365,13 @@ Communes sans électricien  : ${orphelines} (redirection 301)
 Fiches labellisées RGE     : ${avecRge}
 Base                       : ${DB_PATH}
 `);
+
+  // Vercel exécute les fonctions serverless sur un système de fichiers en
+  // lecture seule. Une base en WAL y est inouvrable même en lecture : SQLite
+  // doit créer les fichiers -wal et -shm à côté du .db. On rebascule donc en
+  // journal « delete », qui ne demande aucune écriture à l'ouverture.
+  db.pragma("wal_checkpoint(TRUNCATE)");
+  db.pragma("journal_mode = DELETE");
 
   db.close();
 }
