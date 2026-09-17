@@ -26,7 +26,7 @@ export default function Page() {
             Le site {metier.domaine} est édité par viteunelectricien.fr.
           </p>
           <p className="mt-2">
-            Directeur de la publication : [Viteunelectricien.fr]. Contact :{" "}
+            Directeur de la publication : Viteunelectricien.fr. Contact :{" "}
             <a href={`mailto:contact@viteunelectricien.fr}`} className="underline">
               contact@viteunelectricien.fr
             </a>
