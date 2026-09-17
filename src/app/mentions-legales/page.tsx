@@ -23,14 +23,14 @@ export default function Page() {
         <section>
           <h2 className="text-lg font-semibold text-slate-900">Éditeur</h2>
           <p className="mt-2">
-            Le site {metier.domaine} est édité par [Viteunelectricien.fr].
+            Le site {metier.domaine} est édité par viteunelectricien.fr.
           </p>
           <p className="mt-2">
             Directeur de la publication : [Viteunelectricien.fr]. Contact :{" "}
             <a href={`mailto:contact@viteunelectricien.fr}`} className="underline">
               contact@viteunelectricien.fr
             </a>
-            .
+
           </p>
         </section>
 
