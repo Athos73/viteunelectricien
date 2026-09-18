@@ -24,6 +24,7 @@ const jakarta = Plus_Jakarta_Sans({
 const LIENS_NAV = [
   { nom: "Accueil", href: "/" },
   { nom: "Régions", href: "/regions" },
+  { nom: "Départements", href: "/departements" },
   { nom: "Professionnels", href: "/retrait" },
 ] as const;
 
@@ -49,19 +50,18 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               Le logo porte déjà le nom du site : le texte vit dans l'image, on
               le restitue donc via l'alt plutôt que de le doubler en HTML. La
               hauteur pilote la taille (w-auto), l'import statique fournit le
-              ratio à Next pour éviter tout décalage au chargement.
+              ratio à Next pour éviter tout décalage au chargement. Seul dans
+              une barre de 80 px, il occupe les deux tiers de sa hauteur ; on
+              le réduit sous 640 px pour laisser la place au bouton de devis.
             */}
-            <Link href="/" className="group flex shrink-0 flex-col items-start">
+            <Link href="/" className="group flex shrink-0 items-center">
               <Image
                 src={logoViteUnElectricien}
                 alt={metier.nomSite}
                 loading="eager"
-                sizes="(min-width: 640px) 152px, 138px"
-                className="h-10 w-auto transition-transform group-hover:scale-[1.03] sm:h-11"
+                sizes="(min-width: 640px) 192px, 151px"
+                className="h-11 w-auto transition-transform group-hover:scale-[1.03] sm:h-14"
               />
-              <span className="mt-1 text-[10px] font-semibold tracking-wider text-primary uppercase">
-                Annuaire officiel Sirene
-              </span>
             </Link>
 
             <nav className="hidden items-center gap-8 text-sm font-medium text-ink-soft lg:flex">
@@ -157,6 +157,14 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                       className="transition-colors hover:text-sky-400"
                     >
                       Toutes les régions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/departements"
+                      className="transition-colors hover:text-sky-400"
+                    >
+                      Tous les départements
                     </Link>
                   </li>
                 </ul>

@@ -24,7 +24,14 @@ export function generateStaticParams() {
   ];
 }
 
-const PAGES_FIXES = ["/", "/regions", "/mentions-legales", "/confidentialite", "/retrait"];
+const PAGES_FIXES = [
+  "/",
+  "/regions",
+  "/departements",
+  "/mentions-legales",
+  "/confidentialite",
+  "/retrait",
+];
 
 export async function GET(
   _request: Request,

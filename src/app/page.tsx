@@ -302,35 +302,35 @@ export default function Page() {
             Décrivez votre projet en une minute : des professionnels de votre
             secteur vous recontactent directement.
           </p>
+          <div className="mt-10 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
+            <FormulaireDevis source="accueil" />
+          </div>
+
           {/*
             Le parcours en trois temps — le doute, la recherche, le résultat —
-            juste avant le formulaire : on montre à quoi il sert avant de le
-            demander.
+            sous le formulaire : le rappel de ce à quoi il sert, pour qui
+            hésite encore une fois le formulaire parcouru.
 
             La bande est un panoramique 2,5:1 dont tous les textes sont
             incrustés. Sous 1024 px elle retomberait à ~140 px de haut et
             deviendrait illisible : on n'y garde alors que le dernier volet,
-            celui qui rassure juste avant de remplir le formulaire. Les deux
-            images restent en chargement paresseux (défaut de next/image), donc
-            le navigateur ne télécharge que celle qui s'affiche.
+            celui qui rassure. Les deux images restent en chargement paresseux
+            (défaut de next/image), donc le navigateur ne télécharge que celle
+            qui s'affiche.
           */}
           <div className="mt-10 w-full max-w-6xl">
             <Image
               src={parcoursConfiance}
               alt="Un électricien au travail sur un tableau : professionnels vérifiés, devis rapides, travaux de qualité, en toute confiance — vos travaux entre de bonnes mains."
-              sizes="(min-width: 448px) 448px, 100vw"
+              sizes="448px"
               className="mx-auto h-auto w-full max-w-md rounded-2xl ring-1 ring-white/10 lg:hidden"
             />
             <Image
               src={parcoursDevis}
               alt="Trois étapes : trop de questions et de temps perdu pour trouver un artisan, une recherche rapide et simple sur Vite un électricien, puis des travaux confiés à des professionnels vérifiés."
-              sizes="(min-width: 1280px) 1152px, 100vw"
+              sizes="1152px"
               className="hidden h-auto w-full rounded-2xl ring-1 ring-white/10 lg:block"
             />
-          </div>
-
-          <div className="mt-10 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
-            <FormulaireDevis source="accueil" />
           </div>
         </Conteneur>
       </section>
