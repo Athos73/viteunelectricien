@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import Image from "next/image";
 import Link from "next/link";
 import "./globals.css";
+import logoMarque from "@/assets/logo-marque.png";
+import logoViteUnElectricien from "@/assets/logo-viteunelectricien.png";
 import { CtaFlottant } from "@/components/CtaFlottant";
-import { Icone } from "@/components/Icone";
 import { metier } from "@/config/metier";
 import { BASE_URL } from "@/lib/site";
 
@@ -43,17 +45,22 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col bg-surface font-sans text-ink-soft">
         <header className="sticky top-0 z-50 border-b border-slate-100 bg-white/95 shadow-[0_2px_12px_rgb(15_23_42/0.03)] backdrop-blur-md">
           <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
-            <Link href="/" className="group flex items-center gap-3">
-              <span className="flex size-11 items-center justify-center rounded-2xl bg-gradient-to-tr from-sky-600 via-sky-500 to-cyan-400 text-white shadow-md shadow-sky-500/25 transition-transform group-hover:scale-105">
-                <Icone nom="eclair" className="size-6" />
-              </span>
-              <span className="flex flex-col">
-                <span className="font-heading text-lg leading-none font-bold tracking-tight text-ink sm:text-xl">
-                  {metier.nomSite}
-                </span>
-                <span className="mt-0.5 text-[10px] font-semibold tracking-wider text-primary uppercase">
-                  Annuaire officiel Sirene
-                </span>
+            {/*
+              Le logo porte déjà le nom du site : le texte vit dans l'image, on
+              le restitue donc via l'alt plutôt que de le doubler en HTML. La
+              hauteur pilote la taille (w-auto), l'import statique fournit le
+              ratio à Next pour éviter tout décalage au chargement.
+            */}
+            <Link href="/" className="group flex shrink-0 flex-col items-start">
+              <Image
+                src={logoViteUnElectricien}
+                alt={metier.nomSite}
+                loading="eager"
+                sizes="(min-width: 640px) 152px, 138px"
+                className="h-10 w-auto transition-transform group-hover:scale-[1.03] sm:h-11"
+              />
+              <span className="mt-1 text-[10px] font-semibold tracking-wider text-primary uppercase">
+                Annuaire officiel Sirene
               </span>
             </Link>
 
@@ -110,10 +117,19 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-4">
               <div>
+                {/*
+                  Sur le fond sombre du pied de page, le bloc « Vite un » du
+                  logo complet — bleu nuit — disparaîtrait : on n'y reprend que
+                  le symbole, le nom restant du texte en blanc.
+                */}
                 <div className="flex items-center gap-3">
-                  <span className="flex size-10 items-center justify-center rounded-xl bg-gradient-to-tr from-sky-600 via-sky-500 to-cyan-400 text-white">
-                    <Icone nom="eclair" className="size-5" />
-                  </span>
+                  <Image
+                    src={logoMarque}
+                    alt=""
+                    aria-hidden
+                    sizes="44px"
+                    className="h-10 w-auto"
+                  />
                   <span className="font-heading text-lg font-bold text-white">
                     {metier.nomSite}
                   </span>

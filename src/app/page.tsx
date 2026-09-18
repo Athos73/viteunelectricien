@@ -1,4 +1,8 @@
+import Image from "next/image";
 import Link from "next/link";
+import heroElectricien from "@/assets/hero-electricien.jpg";
+import parcoursConfiance from "@/assets/parcours-devis-confiance.jpg";
+import parcoursDevis from "@/assets/parcours-devis.jpg";
 import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { Icone } from "@/components/Icone";
 import { Recherche } from "@/components/Recherche";
@@ -27,15 +31,37 @@ export default function Page() {
 
   return (
     <>
-      {/* Héros : dégradé clair, halos diffus et barre de recherche flottante. */}
-      <section className="relative overflow-hidden border-b border-hairline/60 bg-gradient-to-b from-sky-50 via-white to-surface py-16 lg:py-24">
-        <div
+      {/* Héros : photo pleine largeur en fond, voiles blancs dégradés pour
+          garder le texte lisible et fondre la section dans le bloc suivant. */}
+      <section className="relative isolate overflow-hidden border-b border-hairline/60 bg-gradient-to-b from-sky-50 via-white to-surface py-16 lg:py-24">
+        {/* La photo est un panorama 2,5:1 : sous 1280 px le cadre est trop
+            étroit pour la montrer en entier, on recentre donc le recadrage sur
+            la carte de France (zone claire et reconnaissable) plutôt que sur un
+            morceau de ciel. Au-delà, le centrage rend l'électricien à gauche et
+            la carte à droite, de part et d'autre du texte. */}
+        <Image
+          src={heroElectricien}
+          alt=""
           aria-hidden
-          className="pointer-events-none absolute top-0 right-1/4 size-96 rounded-full bg-sky-200/40 blur-3xl"
+          fill
+          preload
+          sizes="100vw"
+          placeholder="blur"
+          className="-z-20 object-cover object-[78%_center] xl:object-center"
         />
+
+        {/* Voile vertical : opaque sous le header collant, transparent au
+            milieu pour laisser voir la photo, blanc en bas pour rejoindre la
+            section suivante. Plus léger à mesure que l'écran s'élargit. */}
         <div
           aria-hidden
-          className="pointer-events-none absolute top-1/3 left-10 size-80 rounded-full bg-blue-100/50 blur-3xl"
+          className="pointer-events-none absolute inset-0 -z-10 bg-gradient-to-b from-white/85 via-white/45 to-white lg:from-white/75 lg:via-white/32"
+        />
+        {/* Halo radial centré sur la colonne de texte : assure le contraste du
+            titre là où le voile est le plus fin. */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 -z-10 bg-[radial-gradient(60%_44%_at_50%_36%,rgba(255,255,255,0.72),rgba(255,255,255,0)_72%)]"
         />
 
         <Conteneur className="relative z-10 flex flex-col items-center text-center">
@@ -276,6 +302,33 @@ export default function Page() {
             Décrivez votre projet en une minute : des professionnels de votre
             secteur vous recontactent directement.
           </p>
+          {/*
+            Le parcours en trois temps — le doute, la recherche, le résultat —
+            juste avant le formulaire : on montre à quoi il sert avant de le
+            demander.
+
+            La bande est un panoramique 2,5:1 dont tous les textes sont
+            incrustés. Sous 1024 px elle retomberait à ~140 px de haut et
+            deviendrait illisible : on n'y garde alors que le dernier volet,
+            celui qui rassure juste avant de remplir le formulaire. Les deux
+            images restent en chargement paresseux (défaut de next/image), donc
+            le navigateur ne télécharge que celle qui s'affiche.
+          */}
+          <div className="mt-10 w-full max-w-6xl">
+            <Image
+              src={parcoursConfiance}
+              alt="Un électricien au travail sur un tableau : professionnels vérifiés, devis rapides, travaux de qualité, en toute confiance — vos travaux entre de bonnes mains."
+              sizes="(min-width: 448px) 448px, 100vw"
+              className="mx-auto h-auto w-full max-w-md rounded-2xl ring-1 ring-white/10 lg:hidden"
+            />
+            <Image
+              src={parcoursDevis}
+              alt="Trois étapes : trop de questions et de temps perdu pour trouver un artisan, une recherche rapide et simple sur Vite un électricien, puis des travaux confiés à des professionnels vérifiés."
+              sizes="(min-width: 1280px) 1152px, 100vw"
+              className="hidden h-auto w-full rounded-2xl ring-1 ring-white/10 lg:block"
+            />
+          </div>
+
           <div className="mt-10 w-full max-w-3xl rounded-2xl border border-hairline bg-white p-5 shadow-float sm:p-8">
             <FormulaireDevis source="accueil" />
           </div>
