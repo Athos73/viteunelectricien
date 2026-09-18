@@ -1,4 +1,4 @@
-import { tousDepartements } from "@/lib/db";
+import { dateDonnees, tousDepartements } from "@/lib/db";
 import { absolu } from "@/lib/site";
 import { reponseXml, sitemapindex } from "@/lib/xml";
 
@@ -10,7 +10,7 @@ export const revalidate = 86400;
  * « zones » pour les pages transverses.
  */
 export function GET() {
-  const modifie = new Date().toISOString();
+  const modifie = dateDonnees();
   const locs = [
     absolu("/sitemaps/zones.xml"),
     ...tousDepartements().map((d) => absolu(`/sitemaps/${d.code}.xml`)),

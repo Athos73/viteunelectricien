@@ -1,5 +1,5 @@
 import Database from "better-sqlite3";
-import { readdir, readFile } from "node:fs/promises";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import { join } from "node:path";
 import { slugify, villeSlug } from "../src/lib/slug";
 import { metier } from "../src/config/metier";
@@ -7,6 +7,7 @@ import type { Fiche } from "./fetch-entreprises";
 
 const RAW = join(process.cwd(), "data", "raw");
 const DB_PATH = join(process.cwd(), "data", "annuaire.db");
+const META_PATH = join(process.cwd(), "data", "annuaire.meta.json");
 
 type Commune = {
   code: string;
@@ -374,6 +375,17 @@ Base                       : ${DB_PATH}
   db.pragma("journal_mode = DELETE");
 
   db.close();
+
+  // Date de construction, à côté de la base plutôt que dedans : les sitemaps
+  // s'en servent comme <lastmod>, et un fichier de 60 octets se reversionne
+  // sans rejouer les 34 Mo du .db à chaque correction. La date de modification
+  // du fichier ne ferait pas l'affaire — un `git clone` la réécrit, donc elle
+  // vaudrait l'heure du build sur Vercel.
+  await writeFile(
+    META_PATH,
+    JSON.stringify({ genere_le: new Date().toISOString() }, null, 2) + "\n",
+    "utf8",
+  );
 }
 
 main().catch((e) => {

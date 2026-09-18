@@ -1,5 +1,6 @@
 import { notFound } from "next/navigation";
 import {
+  dateDonnees,
   departementParCode,
   sitemapDepartement,
   tousDepartements,
@@ -38,7 +39,7 @@ export async function GET(
   { params }: { params: Promise<{ fichier: string }> },
 ) {
   const { fichier } = await params;
-  const modifie = new Date().toISOString();
+  const modifie = dateDonnees();
 
   if (fichier === "zones.xml") {
     const entrees: Entree[] = [

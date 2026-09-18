@@ -1,4 +1,5 @@
 import Database from "better-sqlite3";
+import { readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 export const PAR_PAGE = 30;
@@ -46,9 +47,12 @@ export type Zone = {
 
 let instance: Database.Database | null = null;
 
+const CHEMIN_DB = join(process.cwd(), "data", "annuaire.db");
+const CHEMIN_META = join(process.cwd(), "data", "annuaire.meta.json");
+
 function db() {
   if (!instance) {
-    instance = new Database(join(process.cwd(), "data", "annuaire.db"), {
+    instance = new Database(CHEMIN_DB, {
       readonly: true,
       fileMustExist: true,
     });
@@ -207,6 +211,37 @@ export function rechercheCommunes(q: string, limite: number) {
     slug: string;
     nb: number;
   }[];
+}
+
+/**
+ * Date des données, pour le <lastmod> des sitemaps.
+ *
+ * Le lastmod servait jusqu'ici l'heure de génération : à chaque revalidation,
+ * les ~125 000 URL déclaraient toutes avoir changé le jour même alors que leur
+ * contenu ne bougeait pas. Google documente qu'il cesse d'exploiter un lastmod
+ * dès qu'il le juge peu fiable — le signal était donc perdu.
+ *
+ * Le contenu ne change qu'à la reconstruction de la base. On lit donc la date
+ * que `scripts/build-db.ts` dépose à côté d'elle. À défaut de ce fichier, on
+ * retombe sur la date de modification du .db : moins fiable — un `git clone`
+ * la réécrit, elle vaut donc l'heure du build sur Vercel — mais toujours
+ * préférable à une date qui bouge à chaque revalidation.
+ */
+let dateDonneesMemo: string | null = null;
+
+export function dateDonnees(): string {
+  if (dateDonneesMemo) return dateDonneesMemo;
+
+  let date: string | undefined;
+  try {
+    const meta = JSON.parse(readFileSync(CHEMIN_META, "utf8"));
+    if (typeof meta.genere_le === "string") date = meta.genere_le;
+  } catch {
+    /* fichier absent ou illisible : on bascule sur le mtime */
+  }
+
+  dateDonneesMemo = date ?? statSync(CHEMIN_DB).mtime.toISOString();
+  return dateDonneesMemo;
 }
 
 export function statsGlobales() {
