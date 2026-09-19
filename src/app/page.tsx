@@ -3,17 +3,18 @@ import Link from "next/link";
 import heroElectricien from "@/assets/hero-electricien.jpg";
 import parcoursConfiance from "@/assets/parcours-devis-confiance.jpg";
 import parcoursDevis from "@/assets/parcours-devis.jpg";
+import { Faq } from "@/components/Faq";
 import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { Icone } from "@/components/Icone";
 import { Interventions } from "@/components/Interventions";
 import { PopupDevis } from "@/components/PopupDevis";
+import { PrixIndicatifs } from "@/components/PrixIndicatifs";
 import { Recherche } from "@/components/Recherche";
 import {
   CarteLien,
   Conteneur,
   EnTeteSection,
   Pastille,
-  Question,
 } from "@/components/Ui";
 import { metier } from "@/config/metier";
 import { statsGlobales, topCommunes, toutesRegions } from "@/lib/db";
@@ -193,43 +194,7 @@ export default function Page() {
         </Conteneur>
       </section>
 
-      {/* FAQ. */}
-      <section className="border-b border-hairline/80 bg-slate-50/70 py-20">
-        <div className="mx-auto flex max-w-4xl flex-col items-center px-4 sm:px-6 lg:px-8">
-          <EnTeteSection pastille="FAQ" titre="Questions fréquentes" className="mb-10" />
-          <div className="flex w-full flex-col gap-3.5">
-            <Question titre="D'où proviennent les entreprises listées ?" ouvert>
-              De la base Sirene de l&apos;INSEE, qui recense tous les
-              établissements immatriculés en France. Nous ne retenons que les
-              établissements en activité dont le code d&apos;activité principale
-              est {metier.nafCodes.join(", ")} (travaux d&apos;installation
-              électrique dans tous locaux). Les entreprises ayant exercé leur
-              droit d&apos;opposition auprès de l&apos;INSEE ne sont pas
-              affichées.
-            </Question>
-            <Question titre="Que signifie le label RGE ?">
-              Reconnu Garant de l&apos;Environnement. C&apos;est une
-              qualification délivrée par un organisme accrédité, obligatoire
-              pour que vos travaux ouvrent droit à MaPrimeRénov&apos; ou aux
-              certificats d&apos;économies d&apos;énergie (CEE). Nous
-              l&apos;indiquons sur chaque fiche concernée.
-            </Question>
-            <Question titre="Le service est-il payant ?">
-              Non. La consultation de l&apos;annuaire et la demande de devis
-              sont gratuites et sans engagement.
-            </Question>
-            <Question
-              titre={`Je suis ${metier.labelSingulier}, comment modifier ou retirer ma fiche ?`}
-            >
-              Rendez-vous sur la page{" "}
-              <Link href="/retrait" className="font-semibold text-primary underline">
-                retrait d&apos;une fiche
-              </Link>
-              . Toute demande est traitée sous 30 jours.
-            </Question>
-          </div>
-        </div>
-      </section>
+      <Faq />
 
       {/* Appel à l'action : le formulaire de devis. */}
       <section id="devis" className="scroll-mt-24 bg-ink py-20">
@@ -275,6 +240,8 @@ export default function Page() {
           </div>
         </Conteneur>
       </section>
+
+      <PrixIndicatifs />
     </>
   );
 }

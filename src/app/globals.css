@@ -69,3 +69,24 @@ body {
     transform: none;
   }
 }
+
+/* Sautillement de l'éclair du bouton de devis flottant (`CtaFlottant`).
+   Le rebond n'occupe que le dernier tiers du cycle : l'icône reste immobile
+   entre deux sauts, là où une oscillation continue accrocherait l'œil en
+   permanence pendant la lecture. */
+@keyframes eclair-sautille {
+  0%,
+  62%,
+  100% {
+    transform: translateY(0);
+  }
+  72% {
+    transform: translateY(-3px);
+  }
+  82% {
+    transform: translateY(0);
+  }
+  91% {
+    transform: translateY(-1.5px);
+  }
+}

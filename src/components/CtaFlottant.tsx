@@ -68,7 +68,10 @@ export function CtaFlottant() {
           : "translate-y-0 opacity-100"
       }`}
     >
-      <Icone nom="eclair" className="size-5" />
+      <Icone
+        nom="eclair"
+        className="size-5 animate-[eclair-sautille_2.4s_ease-in-out_infinite] motion-reduce:animate-none"
+      />
       <span className="sm:hidden">Devis gratuit</span>
       <span className="hidden sm:inline">Demander un devis gratuit</span>
     </Link>

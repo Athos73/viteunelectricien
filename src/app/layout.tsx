@@ -25,7 +25,6 @@ const LIENS_NAV = [
   { nom: "Accueil", href: "/" },
   { nom: "Régions", href: "/regions" },
   { nom: "Départements", href: "/departements" },
-  { nom: "Professionnels", href: "/retrait" },
 ] as const;
 
 export const metadata: Metadata = {
