@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "metiers": "tsx --env-file-if-exists=.env.local scripts/metiers-helloartisan.ts"
+    "metiers": "tsx --env-file-if-exists=.env.local scripts/metiers-helloartisan.ts",
+    "indexnow": "tsx scripts/indexnow.ts"
   },
   "dependencies": {
     "better-sqlite3": "^13.0.3",
