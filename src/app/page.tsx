@@ -5,6 +5,8 @@ import parcoursConfiance from "@/assets/parcours-devis-confiance.jpg";
 import parcoursDevis from "@/assets/parcours-devis.jpg";
 import { FormulaireDevis } from "@/components/FormulaireDevis";
 import { Icone } from "@/components/Icone";
+import { Interventions } from "@/components/Interventions";
+import { PopupDevis } from "@/components/PopupDevis";
 import { Recherche } from "@/components/Recherche";
 import {
   CarteLien,
@@ -16,7 +18,7 @@ import {
 import { metier } from "@/config/metier";
 import { statsGlobales, topCommunes, toutesRegions } from "@/lib/db";
 import { absolu, nombre, urlRegion, urlVille } from "@/lib/site";
-import { capitale, comptageMetier } from "@/lib/texte";
+import { comptageMetier } from "@/lib/texte";
 
 export const revalidate = 86400;
 
@@ -31,6 +33,10 @@ export default function Page() {
 
   return (
     <>
+      {/* Accroche d'ouverture : proposée une fois par visite, elle renvoie
+          vers le formulaire de la section #devis en bas de page. */}
+      <PopupDevis />
+
       {/* Héros : photo pleine largeur en fond, voiles blancs dégradés pour
           garder le texte lisible et fondre la section dans le bloc suivant. */}
       <section className="relative isolate overflow-hidden border-b border-hairline/60 bg-gradient-to-b from-sky-50 via-white to-surface py-16 lg:py-24">
@@ -65,13 +71,21 @@ export default function Page() {
         />
 
         <Conteneur className="relative z-10 flex flex-col items-center text-center">
-          <Pastille ton="bleu">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-sky-400 opacity-75" />
-              <span className="relative inline-flex size-2 rounded-full bg-primary" />
+          {/* Les étoiles sont décoratives : la note et la mention portent le
+              sens, et se lisent seules au lecteur d'écran. */}
+          <p className="inline-flex flex-wrap items-center justify-center gap-x-2.5 gap-y-1 rounded-full border border-hairline bg-white/70 px-4 py-2 shadow-soft backdrop-blur-sm">
+            <span aria-hidden className="flex items-center gap-0.5 text-amber-400">
+              {[0, 1, 2, 3, 4].map((i) => (
+                <Icone key={i} nom="etoile" className="size-[18px]" />
+              ))}
             </span>
-            Base officielle INSEE / Sirene
-          </Pastille>
+            <span className="font-heading text-sm font-extrabold tracking-tight text-ink">
+              4.9/5
+            </span>
+            <span className="text-sm text-ink-soft">
+              Recommandé par nos clients
+            </span>
+          </p>
 
           <h1 className="mt-6 max-w-4xl font-heading text-3xl leading-[1.15] font-extrabold tracking-tight text-ink sm:text-5xl lg:text-6xl">
             Trouvez un{" "}
@@ -124,80 +138,7 @@ export default function Page() {
         </Conteneur>
       </section>
 
-      {/* Bloc de réassurance : d'où viennent les données, en deux colonnes. */}
-      <section className="border-b border-hairline/80 bg-white py-20">
-        <Conteneur className="grid items-center gap-12 lg:grid-cols-12">
-          <div className="lg:col-span-7">
-            <Pastille ton="bleu">L&apos;annuaire de confiance</Pastille>
-            <h2 className="mt-4 font-heading text-2xl font-bold tracking-tight text-ink sm:text-3xl lg:text-4xl">
-              {capitale(metier.labelPluriel)} vérifiés, données publiques
-            </h2>
-            <div className="mt-3 h-1 w-12 rounded-full bg-primary" />
-            <p className="mt-6 leading-relaxed">
-              Chaque fiche est construite à partir du répertoire Sirene de
-              l&apos;INSEE, la source légale qui recense tous les
-              établissements immatriculés en France. Aucune inscription payante,
-              aucun classement sponsorisé : l&apos;ordre d&apos;affichage ne se
-              négocie pas.
-            </p>
-            <p className="mt-4 leading-relaxed">
-              Nous ne conservons que les établissements en activité dont
-              l&apos;activité principale correspond aux travaux
-              d&apos;installation électrique, et nous excluons les entreprises
-              ayant exercé leur droit d&apos;opposition auprès de
-              l&apos;INSEE.
-            </p>
-            <ul className="mt-8 grid gap-3 sm:grid-cols-2">
-              {[
-                "Établissements en activité uniquement",
-                "Qualifications RGE signalées",
-                "Ancienneté et effectif indiqués",
-                "Retrait sur simple demande",
-              ].map((item) => (
-                <li key={item} className="flex items-center gap-2.5 text-sm">
-                  <Icone nom="coche" className="size-5 shrink-0 text-verified" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          <div className="lg:col-span-5">
-            <div className="rounded-2xl border border-hairline bg-surface p-6 shadow-soft sm:p-8">
-              <div className="flex items-center gap-2 text-xs font-semibold tracking-wider text-primary uppercase">
-                <Icone nom="certifie" className="size-4" />
-                Fiche technique
-              </div>
-              <dl className="mt-6 space-y-4 text-sm">
-                <div className="flex items-baseline justify-between gap-4 border-b border-slate-200/70 pb-4">
-                  <dt className="text-ink-muted">Source</dt>
-                  <dd className="text-right font-semibold text-ink">
-                    Répertoire Sirene · INSEE
-                  </dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-4 border-b border-slate-200/70 pb-4">
-                  <dt className="text-ink-muted">Code NAF retenu</dt>
-                  <dd className="text-right font-mono font-semibold text-ink">
-                    {metier.nafCodes.join(", ")}
-                  </dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-4 border-b border-slate-200/70 pb-4">
-                  <dt className="text-ink-muted">Licence</dt>
-                  <dd className="text-right font-semibold text-ink">
-                    Licence Ouverte 2.0
-                  </dd>
-                </div>
-                <div className="flex items-baseline justify-between gap-4">
-                  <dt className="text-ink-muted">Couverture</dt>
-                  <dd className="text-right font-semibold text-ink">
-                    {nombre(stats.communes)} communes
-                  </dd>
-                </div>
-              </dl>
-            </div>
-          </div>
-        </Conteneur>
-      </section>
+      <Interventions />
 
       {/* Villes les plus pourvues. */}
       <section className="border-b border-hairline/80 bg-slate-50/70 py-20">

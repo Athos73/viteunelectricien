@@ -56,3 +56,16 @@ body {
   background: #cbd5e1;
   border-radius: 9999px;
 }
+
+/* Entrée de la modale d'accroche (`PopupDevis`) : montée courte et discrète,
+   appelée via `animate-[popup-entree_...]` sur l'élément `<dialog>`. */
+@keyframes popup-entree {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
