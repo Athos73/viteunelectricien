@@ -27,8 +27,8 @@ export default function Page() {
           </p>
           <p className="mt-2">
             Directeur de la publication : Viteunelectricien.fr. Contact :{" "}
-            <a href={`mailto:contact@viteunelectricien.fr}`} className="underline">
-              contact@viteunelectricien.fr
+            <a href={`mailto:${metier.email}`} className="underline">
+              {metier.email}
             </a>
 
           </p>

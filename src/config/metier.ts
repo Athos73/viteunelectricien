@@ -5,6 +5,7 @@ export type MetierConfig = {
   labelPluriel: string;
   domaine: string;
   nomSite: string;
+  email: string;
 };
 
 export const metier: MetierConfig = {
@@ -14,4 +15,5 @@ export const metier: MetierConfig = {
   labelPluriel: "électriciens",
   domaine: "viteunelectricien.fr",
   nomSite: "Vite un électricien",
+  email: "viteunelectricien@gmail.com",
 };

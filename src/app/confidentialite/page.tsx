@@ -97,8 +97,8 @@ export default function Page() {
           <h2 className="text-lg font-semibold text-slate-900">Contact</h2>
           <p className="mt-2">
             Pour toute question relative à vos données :{" "}
-            <a href={`mailto:contact@${metier.domaine}`} className="underline">
-              contact@{metier.domaine}
+            <a href={`mailto:${metier.email}`} className="underline">
+              {metier.email}
             </a>
             . Vous pouvez également introduire une réclamation auprès de la
             CNIL.

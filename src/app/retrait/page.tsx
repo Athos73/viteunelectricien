@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   alternates: { canonical: absolu("/retrait") },
 };
 
-const MAIL = `contact@${metier.domaine}`;
+const MAIL = metier.email;
 
 export default function Page() {
   return (
