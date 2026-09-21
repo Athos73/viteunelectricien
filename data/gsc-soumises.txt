@@ -1,0 +1,43 @@
+# URL soumises manuellement à la Search Console (outil d'inspection).
+# Une URL par ligne, à compléter après chaque fournée — le sitemap couvre le
+# reste, cette liste ne sert qu'à savoir où l'on en est des soumissions forcées.
+
+# 2026-09-20 — pages transverses
+https://viteunelectricien.fr/
+https://viteunelectricien.fr/regions
+https://viteunelectricien.fr/departements
+
+# 2026-09-20 — départements
+https://viteunelectricien.fr/electricien/departement/paris
+https://viteunelectricien.fr/electricien/departement/nord
+https://viteunelectricien.fr/electricien/departement/bouches-du-rhone
+https://viteunelectricien.fr/electricien/departement/rhone
+https://viteunelectricien.fr/electricien/departement/gironde
+
+# vers le 2026-09-16 — première ville soumise
+https://viteunelectricien.fr/electricien/paris
+
+# 2026-09-20 — villes, par population décroissante
+https://viteunelectricien.fr/electricien/marseille
+https://viteunelectricien.fr/electricien/lyon
+https://viteunelectricien.fr/electricien/toulouse-31000
+https://viteunelectricien.fr/electricien/nice-06000
+https://viteunelectricien.fr/electricien/nantes-44000
+https://viteunelectricien.fr/electricien/montpellier-34000
+https://viteunelectricien.fr/electricien/strasbourg-67000
+https://viteunelectricien.fr/electricien/bordeaux-33000
+https://viteunelectricien.fr/electricien/lille-59000
+
+# 2026-09-21 — villes, suite
+https://viteunelectricien.fr/electricien/rennes-35000
+https://viteunelectricien.fr/electricien/toulon-83000
+https://viteunelectricien.fr/electricien/reims-51100
+https://viteunelectricien.fr/electricien/saint-etienne-42000
+https://viteunelectricien.fr/electricien/le-havre-76600
+https://viteunelectricien.fr/electricien/villeurbanne-69100
+https://viteunelectricien.fr/electricien/angers-49000
+https://viteunelectricien.fr/electricien/grenoble-38000
+https://viteunelectricien.fr/electricien/nimes-30000
+
+# 2026-09-21 — déjà indexées par Google, pas soumises (listées pour ne plus les proposer)
+https://viteunelectricien.fr/electricien/dijon-21000
