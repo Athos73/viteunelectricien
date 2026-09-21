@@ -219,12 +219,12 @@ export function rechercheCommunes(q: string, limite: number) {
  * Le lastmod servait jusqu'ici l'heure de génération : à chaque revalidation,
  * les ~125 000 URL déclaraient toutes avoir changé le jour même alors que leur
  * contenu ne bougeait pas. Google documente qu'il cesse d'exploiter un lastmod
- * dès qu'il le juge peu fiable — le signal était donc perdu.
+ * dès qu'il le juge peu fiable - le signal était donc perdu.
  *
  * Le contenu ne change qu'à la reconstruction de la base. On lit donc la date
  * que `scripts/build-db.ts` dépose à côté d'elle. À défaut de ce fichier, on
- * retombe sur la date de modification du .db : moins fiable — un `git clone`
- * la réécrit, elle vaut donc l'heure du build sur Vercel — mais toujours
+ * retombe sur la date de modification du .db : moins fiable - un `git clone`
+ * la réécrit, elle vaut donc l'heure du build sur Vercel - mais toujours
  * préférable à une date qui bouge à chaque revalidation.
  */
 let dateDonneesMemo: string | null = null;

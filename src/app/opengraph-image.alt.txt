@@ -1,1 +1,1 @@
-Vite un électricien — l'annuaire des électriciens en France, construit à partir de la base Sirene de l'INSEE.
+Vite un électricien - l'annuaire des électriciens en France, construit à partir de la base Sirene de l'INSEE.

@@ -42,7 +42,7 @@ async function main() {
       `/communes?codeDepartement=${dep.code}&fields=${FIELDS}&format=json`,
     );
     communes.push(...batch);
-    process.stdout.write(`\r${dep.code} ${dep.nom} — ${communes.length} communes`);
+    process.stdout.write(`\r${dep.code} ${dep.nom} - ${communes.length} communes`);
   }
 
   // Sirene rattache les établissements parisiens, lyonnais et marseillais aux

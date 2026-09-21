@@ -24,7 +24,7 @@ import {
  * Il collecte exactement les champs de `RequestVO` (API HelloArtisan) et les
  * poste sur `/api/devis`, qui porte les identifiants et effectue l'import. La
  * découpe en quatre écrans n'est pas cosmétique : le champ le plus engageant
- * (le type de travaux) ouvre la saisie, les coordonnées — le point de friction —
+ * (le type de travaux) ouvre la saisie, les coordonnées - le point de friction -
  * ne sont demandées qu'en dernier, une fois le visiteur investi.
  */
 

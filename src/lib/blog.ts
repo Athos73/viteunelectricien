@@ -4,8 +4,8 @@ import { absolu } from "@/lib/site";
 /**
  * Blog : WordPress sert de CMS « headless ».
  *
- * Les articles sont rédigés dans l'administration WordPress — à la main ou
- * poussés par Wisewand via son intégration WordPress native — puis lus ici par
+ * Les articles sont rédigés dans l'administration WordPress - à la main ou
+ * poussés par Wisewand via son intégration WordPress native - puis lus ici par
  * l'API REST et rendus sous viteunelectricien.fr/blog. Le WordPress lui-même
  * n'est pas destiné au public : son front redirige vers le site (voir
  * `docs/wordpress/viteunelectricien-headless.php`).
@@ -122,7 +122,7 @@ async function wp<T>(
   } catch (erreur) {
     // Au build, un CMS injoignable ne doit pas bloquer le déploiement de tout
     // l'annuaire : le blog part vide et se remplit à la revalidation suivante.
-    // À l'exécution on laisse l'erreur remonter — Next garde alors la dernière
+    // À l'exécution on laisse l'erreur remonter - Next garde alors la dernière
     // version en cache au lieu de la remplacer par une page vide.
     if (process.env.NEXT_PHASE === "phase-production-build") {
       console.warn(`[blog] WordPress injoignable au build : ${erreur}`);
@@ -158,14 +158,22 @@ const ENTITES: Record<string, string> = {
   rdquo: "”",
   ldquo: "“",
   ndash: "–",
-  mdash: "—",
+  mdash: "-",
   laquo: "«",
   raquo: "»",
 };
 
+/**
+ * Le site n'écrit jamais de tiret cadratin : ceux que Wisewand ou l'éditeur
+ * glissent dans un article - caractère, entité nommée ou numérique - deviennent
+ * un tiret commun.
+ */
+const sansCadratin = (texte: string) =>
+  texte.replace(/\u2014|&mdash;|&#8212;|&#x2014;/gi, "-");
+
 /** Texte brut depuis le HTML des titres et extraits WordPress. */
 export function texteBrut(html: string): string {
-  return html
+  return sansCadratin(html)
     .replace(/<[^>]*>/g, "")
     .replace(/&#(\d+);/g, (_, n) => String.fromCodePoint(Number(n)))
     .replace(/&#x([0-9a-f]+);/gi, (_, n) => String.fromCodePoint(parseInt(n, 16)))
@@ -207,7 +215,7 @@ function resume(p: WpPost): ResumeArticle {
 /**
  * Les liens internes que Wisewand ou l'éditeur posent pointent vers le domaine
  * du CMS : on les ramène sur le site public, sans quoi chaque maillage interne
- * enverrait le lecteur — et Google — sur le WordPress.
+ * enverrait le lecteur - et Google - sur le WordPress.
  */
 function reecritLiens(html: string): string {
   if (!WP) return html;
@@ -265,10 +273,12 @@ export async function article(slug: string): Promise<Article | null> {
   if (!p) return null;
   return {
     ...resume(p),
-    contenu: assainit(reecritLiens(p.content.rendered)),
+    contenu: sansCadratin(assainit(reecritLiens(p.content.rendered))),
     seo: {
-      titre: p.yoast_head_json?.title ?? null,
-      description: p.yoast_head_json?.description ?? null,
+      titre: p.yoast_head_json?.title ? sansCadratin(p.yoast_head_json.title) : null,
+      description: p.yoast_head_json?.description
+        ? sansCadratin(p.yoast_head_json.description)
+        : null,
     },
   };
 }

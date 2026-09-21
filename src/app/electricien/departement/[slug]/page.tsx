@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const dep = departement(slug);
   if (!dep) return {};
   return {
-    title: `${capitale(metier.labelSingulier)} dans ${prefixeDepartement(dep.nom)} — ${nombre(dep.nb)} professionnels`,
+    title: `${capitale(metier.labelSingulier)} dans ${prefixeDepartement(dep.nom)} - ${nombre(dep.nb)} professionnels`,
     description: `Annuaire des ${metier.labelPluriel} dans ${prefixeDepartement(dep.nom)}. ${nombre(dep.nb)} entreprises en activité, classées par commune.`,
     alternates: { canonical: absolu(urlDepartement(dep.slug)) },
   };

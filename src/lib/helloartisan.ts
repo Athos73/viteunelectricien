@@ -107,7 +107,7 @@ async function appeler(
   return reponse.json();
 }
 
-/** `POST /json/lead/import` — crée le lead et le met en vente. */
+/** `POST /json/lead/import` - crée le lead et le met en vente. */
 export async function importerLead(
   lead: LeadHelloArtisan,
 ): Promise<ReponseHelloArtisan> {
@@ -115,7 +115,7 @@ export async function importerLead(
 }
 
 /**
- * `POST /json/lead/is_sellable` — vérifie qu'un couple code postal / métier
+ * `POST /json/lead/is_sellable` - vérifie qu'un couple code postal / métier
  * trouvera preneur, sans rien créer. Seuls `zipcode` et `worktype` sont requis.
  */
 export async function leadVendable(
@@ -126,7 +126,7 @@ export async function leadVendable(
 }
 
 /**
- * `POST /json/lead/status` — statut d'un lead déjà importé, par `token` ou par
+ * `POST /json/lead/status` - statut d'un lead déjà importé, par `token` ou par
  * `supplierLeadId`. Non utilisé par le formulaire : c'est le point d'entrée
  * qu'interrogera l'orchestration n8n pour savoir si un lead a été validé.
  */
@@ -139,7 +139,7 @@ export async function statutLead(
 export type Metier = { id: number; label: string };
 
 /**
- * `GET /activities` — catalogue des métiers, avec leur `worktype`.
+ * `GET /activities` - catalogue des métiers, avec leur `worktype`.
  *
  * Ce point d'entrée attend ses identifiants dans le corps d'une requête **GET**,
  * ce que la spécification Fetch interdit (« Request with GET/HEAD method cannot

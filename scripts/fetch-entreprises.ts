@@ -74,9 +74,9 @@ async function search(params: URLSearchParams): Promise<{
       await sleep(2000 * attempt);
       continue;
     }
-    throw new Error(`HTTP ${res.status} — ${params}`);
+    throw new Error(`HTTP ${res.status} - ${params}`);
   }
-  throw new Error(`échec après 6 tentatives — ${params}`);
+  throw new Error(`échec après 6 tentatives - ${params}`);
 }
 
 // L'API filtre etat_administratif au niveau de l'entreprise : un établissement
@@ -190,7 +190,7 @@ async function main() {
     const pct = (((i + 1) / departements.length) * 100).toFixed(0);
     const min = ((Date.now() - t0) / 60000).toFixed(1);
     console.log(
-      `[${pct}%] ${dep.code} ${dep.nom} : ${uniques.length} actifs — cumul ${totalFiches} (${min} min)`,
+      `[${pct}%] ${dep.code} ${dep.nom} : ${uniques.length} actifs - cumul ${totalFiches} (${min} min)`,
     );
     await sleep(DELAY_MS);
   }

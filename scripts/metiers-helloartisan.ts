@@ -5,7 +5,7 @@ import { PRESTATIONS } from "../src/config/prestations";
  * Imprime le catalogue des métiers HelloArtisan et signale les écarts avec
  * src/config/prestations.ts.
  *
- * Les `worktype` sont figés dans la configuration — un appel réseau à chaque
+ * Les `worktype` sont figés dans la configuration - un appel réseau à chaque
  * affichage du formulaire serait absurde pour une liste qui bouge deux fois par
  * an. Ce script est le garde-fou : à relancer quand la plateforme annonce une
  * évolution de sa nomenclature.

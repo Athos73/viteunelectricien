@@ -5,7 +5,7 @@ import { absolu } from "@/lib/site";
  * Robots d'IA, déclarés explicitement.
  *
  * Attention au piège : d'après la spécification robots.txt, un agent applique
- * UNIQUEMENT le groupe le plus spécifique qui le concerne — les groupes ne se
+ * UNIQUEMENT le groupe le plus spécifique qui le concerne - les groupes ne se
  * cumulent pas. Dès qu'on nomme « GPTBot », il cesse de lire le groupe « * » et
  * n'hérite donc plus de son `Disallow`. Chaque groupe ci-dessous doit reprendre
  * les mêmes exclusions, sans quoi nommer un robot reviendrait à lui ouvrir
@@ -33,7 +33,7 @@ const IA_ENTRAINEMENT = [
 /**
  * Robots de réponse : ceux qui vont chercher une page au moment où un
  * utilisateur pose sa question, pour la citer. Ce sont eux qui apportent de la
- * visibilité — les bloquer revient à disparaître des réponses.
+ * visibilité - les bloquer revient à disparaître des réponses.
  */
 const IA_REPONSE = [
   "OAI-SearchBot", // index de recherche ChatGPT

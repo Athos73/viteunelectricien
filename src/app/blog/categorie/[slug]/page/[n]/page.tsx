@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const [cat, page] = [await categorie(slug), lire(n)];
   if (!cat || !page) return {};
   return {
-    title: `${cat.nom} — page ${page}`,
+    title: `${cat.nom} - page ${page}`,
     alternates: { canonical: absolu(urlCategorie(cat.slug, page)) },
     robots: { index: false, follow: true },
   };
@@ -48,7 +48,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <ListeBlog
-      titre={`${cat.nom} — page ${page}`}
+      titre={`${cat.nom} - page ${page}`}
       intro={introCategorie(cat.nom)}
       fil={[
         { nom: "Accueil", href: "/" },

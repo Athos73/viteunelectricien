@@ -96,7 +96,7 @@ export const demandeVide = (source: string): DemandeDevis => ({
 
 /**
  * Code postal : le motif est repris à l'identique de l'OpenAPI HelloArtisan.
- * Il couvre la métropole et la Corse, mais **exclut les DOM** (97xxx, 98xxx) —
+ * Il couvre la métropole et la Corse, mais **exclut les DOM** (97xxx, 98xxx) -
  * un lead ultramarin est refusé par l'API avec le code 3. Mieux vaut le dire
  * dans le formulaire que laisser l'API rejeter la demande après coup.
  */

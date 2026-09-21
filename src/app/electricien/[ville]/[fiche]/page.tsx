@@ -45,7 +45,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const nom = f.enseigne ?? f.nom;
   const porteuse = communePorteuse(commune, f);
   return {
-    title: `${nom} — ${metier.labelSingulier} à ${porteuse.nom} (${f.code_postal})`,
+    title: `${nom} - ${metier.labelSingulier} à ${porteuse.nom} (${f.code_postal})`,
     description: `${nom}, ${metier.labelSingulier} situé ${f.adresse}. Coordonnées, ancienneté, qualifications et demande de devis.`,
     alternates: { canonical: absolu(urlFiche(porteuse.slug, f.slug)) },
   };
@@ -150,7 +150,7 @@ export default async function Page({ params }: Props) {
               <div className="rounded-2xl border border-emerald-200 bg-emerald-50 p-6">
                 <h2 className="flex items-center gap-2 font-heading font-bold text-emerald-900">
                   <Icone nom="certifie" className="size-5" />
-                  Qualification RGE — Reconnu Garant de l&apos;Environnement
+                  Qualification RGE - Reconnu Garant de l&apos;Environnement
                 </h2>
                 <p className="mt-2 text-sm leading-relaxed text-emerald-800">
                   Cette entreprise détient {rge.length} qualification

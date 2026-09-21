@@ -14,8 +14,8 @@ const DELAI_MS = 900;
 
 /**
  * Une fois la modale écartée, on ne la remontre pas de la visite. Sans cela un
- * retour à l'accueil depuis une page commune — une navigation client, donc un
- * remontage du composant — la rouvrirait à chaque fois.
+ * retour à l'accueil depuis une page commune - une navigation client, donc un
+ * remontage du composant - la rouvrirait à chaque fois.
  *
  * Stockage de session : l'oubli au prochain passage est volontaire.
  */
@@ -59,8 +59,8 @@ export function PopupDevis() {
     };
   }, [ouvert]);
 
-  // Tous les chemins de fermeture — croix, « non merci », appel à l'action,
-  // touche Échap — passent par `close()`, donc par `onClose` : c'est là que se
+  // Tous les chemins de fermeture - croix, « non merci », appel à l'action,
+  // touche Échap - passent par `close()`, donc par `onClose` : c'est là que se
   // note la visite, et non dans les gestionnaires de clic qu'Échap contourne.
   function surFermeture() {
     try {
@@ -84,7 +84,7 @@ export function PopupDevis() {
     >
       <div className="relative grid overflow-hidden rounded-3xl bg-white sm:grid-cols-[minmax(0,5fr)_minmax(0,7fr)]">
         {/* Volet de gauche : le chiffre porte la promesse à lui seul. Masqué
-            sous 640 px, où il mangerait la hauteur utile — le titre le répète. */}
+            sous 640 px, où il mangerait la hauteur utile - le titre le répète. */}
         <div className="relative hidden flex-col justify-center overflow-hidden bg-gradient-to-br from-sky-500 via-primary to-sky-700 p-8 sm:flex">
           <div
             aria-hidden

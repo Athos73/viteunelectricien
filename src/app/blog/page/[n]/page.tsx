@@ -22,7 +22,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const page = lire((await params).n);
   if (!page) return {};
   return {
-    title: `Blog : conseils et guides — page ${page}`,
+    title: `Blog : conseils et guides - page ${page}`,
     alternates: { canonical: absolu(urlBlog(page)) },
     robots: { index: false, follow: true },
   };
@@ -37,7 +37,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <ListeBlog
-      titre={`${TITRE_BLOG} — page ${page}`}
+      titre={`${TITRE_BLOG} - page ${page}`}
       intro={INTRO_BLOG}
       fil={[
         { nom: "Accueil", href: "/" },

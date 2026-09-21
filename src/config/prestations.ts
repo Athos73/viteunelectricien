@@ -7,7 +7,7 @@
  * la commande de rafraîchissement) ; on n'expose ici que ceux qui relèvent d'un
  * électricien.
  *
- * `titre` est notre libellé — celui de la plateforme est souvent trop
+ * `titre` est notre libellé - celui de la plateforme est souvent trop
  * administratif pour un visiteur (« Rénovation électrique complète ou
  * partielle »). `libelleApi` reprend en revanche l'intitulé officiel, renvoyé
  * tel quel dans `workdescription` : c'est ce que l'artisan verra côté

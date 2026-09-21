@@ -87,13 +87,13 @@ export function comptageMetier(n: number): string {
 }
 
 export function titreVille(commune: Commune, page: number): string {
-  const base = `${capitale(metier.labelSingulier)} à ${commune.nom} (${commune.code_postal}) — ${accord(commune.nb, "professionnel", "professionnels")}`;
-  return page > 1 ? `${base} — page ${page}` : base;
+  const base = `${capitale(metier.labelSingulier)} à ${commune.nom} (${commune.code_postal}) - ${accord(commune.nb, "professionnel", "professionnels")}`;
+  return page > 1 ? `${base} - page ${page}` : base;
 }
 
 export function descriptionVille(commune: Commune, page: number): string {
   const base = `Trouvez un ${metier.labelSingulier} à ${commune.nom} (${commune.code_postal}) parmi ${accord(commune.nb, "entreprise en activité", "entreprises en activité")}. Coordonnées, ancienneté, qualification RGE et demande de devis gratuite.`;
-  return page > 1 ? `Page ${page} — ${base}` : base;
+  return page > 1 ? `Page ${page} - ${base}` : base;
 }
 
 export const capitale = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);

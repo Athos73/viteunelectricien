@@ -38,7 +38,7 @@ export default function Page() {
           <h2 className="text-lg font-semibold text-slate-900">Hébergeur</h2>
           <p className="mt-2">
             Vercel Inc., 440 N Barranca Ave #4133, Covina, CA 91723,
-            États-Unis — vercel.com.
+            États-Unis - vercel.com.
           </p>
         </section>
 

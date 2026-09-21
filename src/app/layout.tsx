@@ -31,7 +31,7 @@ const LIENS_NAV = [
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: `${metier.nomSite} — annuaire des ${metier.labelPluriel} en France`,
+    default: `${metier.nomSite} - annuaire des ${metier.labelPluriel} en France`,
     template: `%s | ${metier.nomSite}`,
   },
   description: `Trouvez un ${metier.labelSingulier} près de chez vous et demandez un devis gratuit. Annuaire national des entreprises d'installation électrique en activité.`,
@@ -86,8 +86,8 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
 
           {/*
             Sous 1024 px la nav ci-dessus est masquée. Plutôt qu'un menu
-            burger — qui imposerait un composant client et du JS sur un site
-            dont tout l'intérêt est d'être statique — on rappelle les mêmes
+            burger - qui imposerait un composant client et du JS sur un site
+            dont tout l'intérêt est d'être statique - on rappelle les mêmes
             liens sur une seconde ligne. Le trafic est majoritairement mobile :
             « Régions » doit rester atteignable depuis l'en-tête.
           */}
@@ -119,7 +119,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
               <div>
                 {/*
                   Sur le fond sombre du pied de page, le bloc « Vite un » du
-                  logo complet — bleu nuit — disparaîtrait : on n'y reprend que
+                  logo complet - bleu nuit - disparaîtrait : on n'y reprend que
                   le symbole, le nom restant du texte en blanc.
                 */}
                 <div className="flex items-center gap-3">
@@ -225,7 +225,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                 réservés.
               </p>
               <p>
-                Données Sirene · INSEE — Licence Ouverte 2.0. Ce site est
+                Données Sirene · INSEE - Licence Ouverte 2.0. Ce site est
                 indépendant des entreprises référencées.
               </p>
             </div>

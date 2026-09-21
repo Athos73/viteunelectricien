@@ -15,7 +15,7 @@ import {
 } from "../src/lib/site";
 
 /**
- * Signale les URL modifiées à IndexNow — le protocole que Bing, Yandex, Seznam
+ * Signale les URL modifiées à IndexNow - le protocole que Bing, Yandex, Seznam
  * et Naver partagent. Google ne le lit pas : pour lui, seul le sitemap compte.
  *
  * À lancer après une reconstruction de la base :
@@ -25,7 +25,7 @@ import {
  *
  * IndexNow demande de ne soumettre que ce qui a changé. Par défaut on se limite
  * donc aux pages de zone : elles affichent des comptages, elles changent à
- * chaque import. Les fiches, elles, bougent rarement — d'où le drapeau explicite
+ * chaque import. Les fiches, elles, bougent rarement - d'où le drapeau explicite
  * pour les inclure, à réserver à une première soumission ou à un import massif.
  */
 
@@ -37,7 +37,7 @@ const PUBLIC = join(process.cwd(), "public");
  * La clé se lit depuis `public/` plutôt que d'être recopiée ici : le protocole
  * exige un fichier `<clé>.txt` contenant la clé elle-même, donc le fichier est
  * déjà la source de vérité. Le chercher évite qu'une constante en dur finisse
- * par diverger du fichier publié — auquel cas les soumissions seraient rejetées
+ * par diverger du fichier publié - auquel cas les soumissions seraient rejetées
  * en 403 sans que rien ne l'explique.
  */
 async function cle(): Promise<string> {
@@ -82,7 +82,7 @@ function explique(statut: number): string {
     case 400:
       return "requête invalide";
     case 403:
-      return "clé refusée — le fichier <clé>.txt est-il bien en ligne ?";
+      return "clé refusée - le fichier <clé>.txt est-il bien en ligne ?";
     case 422:
       return "URL hors du domaine déclaré, ou clé incohérente";
     case 429:
@@ -98,7 +98,7 @@ async function main() {
   const urls = tout ? urlsCompletes() : urlsZones();
 
   console.log(
-    `IndexNow — ${urls.length} URL (${tout ? "annuaire complet" : "pages de zone"})`,
+    `IndexNow - ${urls.length} URL (${tout ? "annuaire complet" : "pages de zone"})`,
   );
   console.log(`Clé : ${clef}\n`);
 
@@ -120,7 +120,7 @@ async function main() {
     const ok = reponse.status === 200 || reponse.status === 202;
     if (!ok) echecs++;
     console.log(
-      `Lot ${numero} — ${lot.length} URL — ${reponse.status} ${explique(reponse.status)}`,
+      `Lot ${numero} - ${lot.length} URL - ${reponse.status} ${explique(reponse.status)}`,
     );
   }
 

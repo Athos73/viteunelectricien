@@ -213,7 +213,7 @@ export default function Page() {
           </div>
 
           {/*
-            Le parcours en trois temps — le doute, la recherche, le résultat —
+            Le parcours en trois temps - le doute, la recherche, le résultat -
             sous le formulaire : le rappel de ce à quoi il sert, pour qui
             hésite encore une fois le formulaire parcouru.
 
@@ -227,7 +227,7 @@ export default function Page() {
           <div className="mt-10 w-full max-w-6xl">
             <Image
               src={parcoursConfiance}
-              alt="Un électricien au travail sur un tableau : professionnels vérifiés, devis rapides, travaux de qualité, en toute confiance — vos travaux entre de bonnes mains."
+              alt="Un électricien au travail sur un tableau : professionnels vérifiés, devis rapides, travaux de qualité, en toute confiance - vos travaux entre de bonnes mains."
               sizes="448px"
               className="mx-auto h-auto w-full max-w-md rounded-2xl ring-1 ring-white/10 lg:hidden"
             />

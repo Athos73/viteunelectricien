@@ -4,8 +4,8 @@ import { EnTeteSection, Question } from "@/components/Ui";
 /**
  * Questions pratiques sur les travaux électriques.
  *
- * Elles répondent à ce que cherche un particulier avant d'appeler un artisan —
- * prix, panne, obligations — et non au fonctionnement de l'annuaire. Deux
+ * Elles répondent à ce que cherche un particulier avant d'appeler un artisan -
+ * prix, panne, obligations - et non au fonctionnement de l'annuaire. Deux
  * précautions y reviennent, parce qu'elles engagent la sécurité et le
  * portefeuille du lecteur : on renvoie vers un professionnel dès qu'il faut
  * toucher au tableau, et on ne chiffre jamais une aide publique dont le montant
@@ -51,7 +51,7 @@ export function Faq() {
               appareils du circuit concerné avant de le relever. S&apos;il saute
               de nouveau, un appareil est défectueux ou la ligne est en
               court-circuit. N&apos;intervenez pas vous-même sur les conducteurs
-              ni à l&apos;intérieur du tableau — l&apos;arrivée reste sous
+              ni à l&apos;intérieur du tableau - l&apos;arrivée reste sous
               tension même disjoncteur abaissé.
             </Question>
 
@@ -67,7 +67,7 @@ export function Faq() {
           <div className="flex flex-col gap-3.5">
             <Question titre="Peut-on installer une borne de recharge chez soi ?">
               Oui. Au-delà de 3,7 kW, la pose doit être confiée à un électricien
-              qualifié IRVE, en maison comme en copropriété — où le « droit à la
+              qualifié IRVE, en maison comme en copropriété - où le « droit à la
               prise » vous permet d&apos;exiger un raccordement à vos frais. Un
               crédit d&apos;impôt pour les bornes pilotables et une TVA réduite
               allègent la facture&nbsp;; leurs conditions changeant chaque année,
@@ -92,7 +92,7 @@ export function Faq() {
             </Question>
 
             <Question titre="Pourquoi choisir un électricien certifié RGE ?">
-              RGE — Reconnu Garant de l&apos;Environnement — est une
+              RGE - Reconnu Garant de l&apos;Environnement - est une
               qualification délivrée par un organisme accrédité, exigée pour que
               vos travaux ouvrent droit à MaPrimeRénov&apos; ou aux certificats
               d&apos;économies d&apos;énergie. Sans elle, ces aides vous sont

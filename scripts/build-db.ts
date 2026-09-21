@@ -37,7 +37,7 @@ function haversine(aLat: number, aLng: number, bLat: number, bLng: number) {
 
 /**
  * L'API renvoie nom_complet sous la forme « RAISON SOCIALE (SIGLE) ». Le sigle
- * répète souvent la raison sociale — « ARTISAN ROBERT (ARTISAN ROBERT) » — et
+ * répète souvent la raison sociale - « ARTISAN ROBERT (ARTISAN ROBERT) » - et
  * n'apporte alors rien. On le sépare pour pouvoir l'écarter.
  */
 function baseEtSigle(nom: string): [string, string | null] {
@@ -379,7 +379,7 @@ Base                       : ${DB_PATH}
   // Date de construction, à côté de la base plutôt que dedans : les sitemaps
   // s'en servent comme <lastmod>, et un fichier de 60 octets se reversionne
   // sans rejouer les 34 Mo du .db à chaque correction. La date de modification
-  // du fichier ne ferait pas l'affaire — un `git clone` la réécrit, donc elle
+  // du fichier ne ferait pas l'affaire - un `git clone` la réécrit, donc elle
   // vaudrait l'heure du build sur Vercel.
   await writeFile(
     META_PATH,

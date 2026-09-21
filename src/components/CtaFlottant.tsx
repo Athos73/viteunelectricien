@@ -10,7 +10,7 @@ import { Icone } from "@/components/Icone";
  * commune (`/electricien/<ville>`) et les fiches entreprise
  * (`/electricien/<ville>/<fiche>`).
  *
- * Les pages région et département ne listent que des zones, sans formulaire —
+ * Les pages région et département ne listent que des zones, sans formulaire -
  * tout comme /regions et les pages légales. On y renvoie vers l'accueil.
  *
  * Ce test se fait sur le chemin plutôt que sur la présence de `#devis` dans le

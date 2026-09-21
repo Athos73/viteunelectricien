@@ -5,7 +5,7 @@ import { Conteneur, EnTeteSection } from "@/components/Ui";
  *
  * Ce sont des ordres de grandeur du marché, pas des tarifs négociés avec les
  * entreprises de l'annuaire : la mention sous le tableau le dit au visiteur, et
- * rien ici n'est balisé en données structurées — un prix déclaré à un moteur
+ * rien ici n'est balisé en données structurées - un prix déclaré à un moteur
  * engagerait le site sur des montants qu'il ne pratique pas.
  *
  * Les espaces des montants sont insécables : « 1 500 € » ne doit jamais se
@@ -59,11 +59,11 @@ const LIGNES = [
 /**
  * Tableau des prix indicatifs.
  *
- * Le balisage reste un vrai tableau — c'est bien de la donnée tabulaire, et les
+ * Le balisage reste un vrai tableau - c'est bien de la donnée tabulaire, et les
  * lecteurs d'écran comme les moteurs y lisent l'association ligne/colonne. Sous
  * 640 px, quatre colonnes deviendraient illisibles : chaque ligne bascule alors
  * en bloc, les deux montants côte à côte sous l'intitulé. Les en-têtes de
- * colonne disparaissant dans cette vue, chaque montant reprend son libellé —
+ * colonne disparaissant dans cette vue, chaque montant reprend son libellé -
  * seuls « Prix bas » et « Prix haut » sont répétés, jamais les données.
  */
 export function PrixIndicatifs() {

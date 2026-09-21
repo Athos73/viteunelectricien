@@ -7,7 +7,7 @@ import { ErreurConfiguration, statutLead } from "@/lib/helloartisan";
  *
  * Miroir de `POST /json/lead/status` chez HelloArtisan, à une différence près :
  * les identifiants de la plateforme restent ici. n8n s'authentifie avec le
- * jeton qu'il possède déjà — celui qui protège le webhook de `/api/devis` — et
+ * jeton qu'il possède déjà - celui qui protège le webhook de `/api/devis` - et
  * n'a jamais à connaître ceux de HelloArtisan.
  *
  * La réponse est recopiée telle quelle depuis la plateforme (`StatusResponseVO`,

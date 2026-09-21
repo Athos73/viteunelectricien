@@ -113,8 +113,8 @@ export async function POST(requete: NextRequest) {
   };
 
   // Robots : champ leurre rempli, ou formulaire renvoyé en moins de trois
-  // secondes. On répond comme à un succès — un message d'erreur ne ferait
-  // qu'indiquer au script ce qu'il doit corriger — mais rien n'est importé.
+  // secondes. On répond comme à un succès - un message d'erreur ne ferait
+  // qu'indiquer au script ce qu'il doit corriger - mais rien n'est importé.
   //
   // L'horodatage vient de l'horloge du visiteur, pas de la nôtre : une durée
   // négative signale une horloge en avance, pas un envoi instantané. On ne
@@ -124,7 +124,7 @@ export async function POST(requete: NextRequest) {
   const instantane = demande.ouvertureMs > 0 && ecoule >= 0 && ecoule < 3_000;
   if (demande.piege || instantane)
     return json(
-      { ok: true, reference: "—", message: "Demande enregistrée." },
+      { ok: true, reference: "-", message: "Demande enregistrée." },
       201,
     );
 

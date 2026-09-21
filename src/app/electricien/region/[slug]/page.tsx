@@ -26,7 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const reg = region(slug);
   if (!reg) return {};
   return {
-    title: `${capitale(metier.labelSingulier)} en ${reg.nom} — ${nombre(reg.nb)} professionnels`,
+    title: `${capitale(metier.labelSingulier)} en ${reg.nom} - ${nombre(reg.nb)} professionnels`,
     description: `Annuaire des ${metier.labelPluriel} en ${reg.nom}, par département et par commune.`,
     alternates: { canonical: absolu(urlRegion(reg.slug)) },
   };

@@ -5,7 +5,7 @@ import { TAG_BLOG, urlArticle } from "@/lib/blog";
 
 /**
  * Appelé par WordPress à chaque publication, mise à jour ou suppression
- * d'article (extension `docs/wordpress/viteunelectricien-headless.php`) — que
+ * d'article (extension `docs/wordpress/viteunelectricien-headless.php`) - que
  * l'article vienne de l'éditeur ou de Wisewand.
  *
  * Sans cet appel, un nouvel article n'apparaîtrait qu'à l'expiration du cache,

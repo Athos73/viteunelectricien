@@ -69,10 +69,10 @@ export default function Page() {
           <p className="mt-2">
             Le formulaire de demande de devis est hébergé par nos soins : il ne
             charge aucune ressource tierce et ne dépose aucun traceur. Les
-            informations que vous y saisissez — type de travaux, situation
+            informations que vous y saisissez - type de travaux, situation
             d&apos;occupation, type de logement, échéance, budget, description
             du projet, civilité, nom, prénom, adresse e-mail, téléphone,
-            adresse et code postal du chantier — ne sont transmises
+            adresse et code postal du chantier - ne sont transmises
             qu&apos;après validation du formulaire.
           </p>
           <p className="mt-2">

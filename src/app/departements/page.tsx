@@ -21,7 +21,7 @@ export default function Page() {
   const stats = statsGlobales();
 
   // La page /regions groupe déjà les départements sous leur région. Ici on les
-  // classe par numéro — c'est ainsi qu'on les cherche — et la région passe en
+  // classe par numéro - c'est ainsi qu'on les cherche - et la région passe en
   // sous-titre pour ne rien perdre de la hiérarchie.
   const nomRegion = new Map(toutesRegions().map((r) => [r.code, r.nom]));
 
@@ -68,7 +68,7 @@ export default function Page() {
       <section className="bg-white py-16">
         <Conteneur>
           {/* Trois colonnes au maximum : sur quatre, « Alpes-de-Haute-Provence »
-              — le plus long nom de département — se fait tronquer par la carte. */}
+              - le plus long nom de département - se fait tronquer par la carte. */}
           <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {departements.map((d) => (
               <li key={d.code}>
