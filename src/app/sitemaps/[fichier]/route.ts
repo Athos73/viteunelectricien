@@ -6,6 +6,7 @@ import {
   tousDepartements,
   toutesRegions,
 } from "@/lib/db";
+import { categories, tousArticles, urlArticle, urlBlog, urlCategorie } from "@/lib/blog";
 import {
   absolu,
   urlDepartement,
@@ -21,6 +22,7 @@ export const dynamicParams = false;
 export function generateStaticParams() {
   return [
     { fichier: "zones.xml" },
+    { fichier: "blog.xml" },
     ...tousDepartements().map((d) => ({ fichier: `${d.code}.xml` })),
   ];
 }
@@ -48,6 +50,21 @@ export async function GET(
       ...tousDepartements().map((d) => ({
         loc: absolu(urlDepartement(d.slug)),
         priorite: 0.7,
+      })),
+    ];
+    return reponseXml(urlset(entrees, modifie));
+  }
+
+  if (fichier === "blog.xml") {
+    const [posts, cats] = await Promise.all([tousArticles(), categories()]);
+    const recent = posts[0]?.modifie ?? modifie;
+    const entrees: Entree[] = [
+      { loc: absolu(urlBlog()), priorite: 0.6, modifie: recent },
+      ...cats.map((c) => ({ loc: absolu(urlCategorie(c.slug)), priorite: 0.5 })),
+      ...posts.map((p) => ({
+        loc: absolu(urlArticle(p.slug)),
+        priorite: 0.7,
+        modifie: p.modifie,
       })),
     ];
     return reponseXml(urlset(entrees, modifie));

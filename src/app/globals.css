@@ -90,3 +90,125 @@ body {
     transform: translateY(-1.5px);
   }
 }
+
+/* Corps des articles du blog : HTML produit par WordPress (éditeur Gutenberg
+   ou Wisewand), qu'on ne peut pas baliser en classes Tailwind. On le met en
+   forme par sélecteurs descendants, dans l'esprit du plugin typography. */
+.contenu-article {
+  font-size: 1.0625rem;
+  line-height: 1.8;
+  color: var(--color-ink-soft);
+}
+.contenu-article > * + * {
+  margin-top: 1.25em;
+}
+.contenu-article h2,
+.contenu-article h3,
+.contenu-article h4 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-ink);
+  scroll-margin-top: 7rem;
+}
+.contenu-article h2 {
+  margin-top: 2.2em;
+  font-size: 1.6rem;
+}
+.contenu-article h3 {
+  margin-top: 1.8em;
+  font-size: 1.3rem;
+}
+.contenu-article h4 {
+  margin-top: 1.5em;
+  font-size: 1.1rem;
+}
+.contenu-article a {
+  color: var(--color-primary);
+  font-weight: 500;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-thickness: 1px;
+}
+.contenu-article a:hover {
+  color: var(--color-primary-hover);
+}
+.contenu-article strong {
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.contenu-article ul,
+.contenu-article ol {
+  padding-left: 1.4em;
+}
+.contenu-article ul {
+  list-style: disc;
+}
+.contenu-article ol {
+  list-style: decimal;
+}
+.contenu-article li + li {
+  margin-top: 0.4em;
+}
+.contenu-article li::marker {
+  color: var(--color-electric);
+}
+.contenu-article blockquote {
+  border-left: 4px solid var(--color-electric);
+  background: var(--color-primary-light);
+  border-radius: 0 0.75rem 0.75rem 0;
+  padding: 1em 1.25em;
+  font-style: italic;
+  color: var(--color-ink);
+}
+.contenu-article img,
+.contenu-article video,
+.contenu-article iframe {
+  max-width: 100%;
+  height: auto;
+  border-radius: 1rem;
+}
+.contenu-article iframe {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
+.contenu-article figure {
+  margin-left: 0;
+  margin-right: 0;
+}
+.contenu-article figcaption {
+  margin-top: 0.5em;
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--color-ink-muted);
+}
+.contenu-article hr {
+  border-color: var(--color-hairline);
+  margin: 2.5em 0;
+}
+/* Les tableaux (comparatifs de prix, fréquents chez Wisewand) défilent
+   horizontalement plutôt que de casser la mise en page sur mobile. */
+.contenu-article table {
+  display: block;
+  width: 100%;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: 0.9375rem;
+}
+.contenu-article th,
+.contenu-article td {
+  border: 1px solid var(--color-hairline);
+  padding: 0.6em 0.9em;
+  text-align: left;
+}
+.contenu-article th {
+  background: var(--color-surface);
+  color: var(--color-ink);
+  font-weight: 600;
+}
+.contenu-article .wp-block-table,
+.contenu-article .wp-block-image {
+  margin-left: 0;
+  margin-right: 0;
+}

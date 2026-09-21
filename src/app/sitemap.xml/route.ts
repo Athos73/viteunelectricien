@@ -13,6 +13,7 @@ export function GET() {
   const modifie = dateDonnees();
   const locs = [
     absolu("/sitemaps/zones.xml"),
+    absolu("/sitemaps/blog.xml"),
     ...tousDepartements().map((d) => absolu(`/sitemaps/${d.code}.xml`)),
   ];
   return reponseXml(sitemapindex(locs, modifie));

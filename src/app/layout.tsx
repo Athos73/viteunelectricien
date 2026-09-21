@@ -25,6 +25,7 @@ const LIENS_NAV = [
   { nom: "Accueil", href: "/" },
   { nom: "Régions", href: "/regions" },
   { nom: "Départements", href: "/departements" },
+  { nom: "Blog", href: "/blog" },
 ] as const;
 
 export const metadata: Metadata = {
@@ -164,6 +165,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
                       className="transition-colors hover:text-sky-400"
                     >
                       Tous les départements
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/blog" className="transition-colors hover:text-sky-400">
+                      Blog : conseils et guides
                     </Link>
                   </li>
                 </ul>
