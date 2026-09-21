@@ -60,7 +60,6 @@ export type ResumeArticle = {
 
 export type Article = ResumeArticle & {
   contenu: string;
-  auteur: string | null;
   seo: {
     titre: string | null;
     description: string | null;
@@ -94,7 +93,6 @@ type WpPost = {
     description?: string;
   };
   _embedded?: {
-    author?: { name?: string }[];
     "wp:featuredmedia"?: WpMedia[];
     "wp:term"?: WpTerme[][];
   };
@@ -261,14 +259,13 @@ export async function articles(
 export async function article(slug: string): Promise<Article | null> {
   const { items } = await wp<WpPost>("posts", {
     slug,
-    _embed: "author,wp:featuredmedia,wp:term",
+    _embed: "wp:featuredmedia,wp:term",
   });
   const p = items[0];
   if (!p) return null;
   return {
     ...resume(p),
     contenu: assainit(reecritLiens(p.content.rendered)),
-    auteur: p._embedded?.author?.[0]?.name ?? null,
     seo: {
       titre: p.yoast_head_json?.title ?? null,
       description: p.yoast_head_json?.description ?? null,

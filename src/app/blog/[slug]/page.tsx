@@ -69,9 +69,7 @@ export default async function Page({ params }: Props) {
     dateModified: a.modifie,
     mainEntityOfPage: absolu(urlArticle(a.slug)),
     ...(a.image ? { image: a.image.url } : {}),
-    author: a.auteur
-      ? { "@type": "Person", name: a.auteur }
-      : { "@type": "Organization", name: metier.nomSite },
+    author: { "@type": "Organization", name: metier.nomSite, url: absolu("/") },
     publisher: { "@type": "Organization", name: metier.nomSite, url: absolu("/") },
   };
 
@@ -103,7 +101,9 @@ export default async function Page({ params }: Props) {
               {a.titre}
             </h1>
             <p className="mt-5 flex flex-wrap items-center gap-x-3 gap-y-1 text-sm text-ink-muted">
-              {a.auteur && <span className="font-medium text-ink-soft">{a.auteur}</span>}
+              {/* Signature de marque : le compte WordPress (« contact »,
+                  « wisewand »…) n'a pas à apparaître côté lecteurs. */}
+              <span className="font-medium text-ink-soft">{metier.nomSite}</span>
               <time dateTime={a.publie}>Publié le {dateLongue(a.publie)}</time>
               {a.modifie.slice(0, 10) > a.publie.slice(0, 10) && (
                 <time dateTime={a.modifie}>· Mis à jour le {dateLongue(a.modifie)}</time>
