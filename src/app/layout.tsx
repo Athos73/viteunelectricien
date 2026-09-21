@@ -31,7 +31,7 @@ const LIENS_NAV = [
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
   title: {
-    default: `${metier.nomSite} - annuaire des ${metier.labelPluriel} en France`,
+    default: `${metier.nomSite} - Annuaire des ${metier.labelPluriel} en France`,
     template: `%s | ${metier.nomSite}`,
   },
   description: `Trouvez un ${metier.labelSingulier} près de chez vous et demandez un devis gratuit. Annuaire national des entreprises d'installation électrique en activité.`,
