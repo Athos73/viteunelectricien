@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Script from "next/script";
 import { GrilleArticles } from "@/components/Blog";
 import { Fil } from "@/components/Fil";
 import { Icone } from "@/components/Icone";
@@ -127,6 +128,17 @@ export default async function Page({ params }: Props) {
           )}
 
           <div className="contenu-article" dangerouslySetInnerHTML={{ __html: a.contenu }} />
+
+          {/* Wisewand pose des blocs interactifs (quiz, diagnostics) pilotés en
+              `x-data` : leur <script> Alpine est retiré par `assainit()` comme
+              tout script venant du contenu, donc on le charge nous-mêmes, en
+              confiance, uniquement quand l'article en a besoin. */}
+          {a.contenu.includes("x-data") && (
+            <Script
+              src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3/dist/cdn.min.js"
+              strategy="lazyOnload"
+            />
+          )}
 
           <aside className="mt-14 overflow-hidden rounded-2xl bg-gradient-to-br from-sky-600 to-cyan-500 p-8 text-white shadow-float">
             <p className="flex items-center gap-2 font-heading text-xl font-bold">

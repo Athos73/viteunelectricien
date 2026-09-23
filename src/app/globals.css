@@ -212,3 +212,11 @@ body {
   margin-left: 0;
   margin-right: 0;
 }
+/* Les encarts et quiz interactifs de Wisewand (classes `.wwc*`, stylées par
+   la feuille wwc.min.css qu'ils importent eux-mêmes) attendent une couleur
+   d'accent en variable CSS. Wisewand la fournit via un <style> par article,
+   mais `assainit()` le retire comme tout <style> venant du contenu : on fixe
+   donc nous-mêmes cette couleur, à celle de la marque. */
+.contenu-article .wwc {
+  --wwc-primary: var(--color-primary);
+}
