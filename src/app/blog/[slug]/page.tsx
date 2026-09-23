@@ -132,11 +132,14 @@ export default async function Page({ params }: Props) {
           {/* Wisewand pose des blocs interactifs (quiz, diagnostics) pilotés en
               `x-data` : leur <script> Alpine est retiré par `assainit()` comme
               tout script venant du contenu, donc on le charge nous-mêmes, en
-              confiance, uniquement quand l'article en a besoin. */}
+              confiance, uniquement quand l'article en a besoin.
+              `afterInteractive` (et non `lazyOnload`, qui attend un moment
+              d'inactivité du navigateur sans délai garanti) pour que le quiz
+              s'affiche dès l'hydratation plutôt qu'aléatoirement. */}
           {a.contenu.includes("x-data") && (
             <Script
               src="https://cdn.jsdelivr.net/npm/@alpinejs/csp@3/dist/cdn.min.js"
-              strategy="lazyOnload"
+              strategy="afterInteractive"
             />
           )}
 
