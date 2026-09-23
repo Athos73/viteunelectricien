@@ -41,3 +41,40 @@ https://viteunelectricien.fr/electricien/nimes-30000
 
 # 2026-09-21 — déjà indexées par Google, pas soumises (listées pour ne plus les proposer)
 https://viteunelectricien.fr/electricien/dijon-21000
+
+# 2026-09-22 — villes, suite
+https://viteunelectricien.fr/electricien/saint-denis-97400
+https://viteunelectricien.fr/electricien/saint-denis-93200
+https://viteunelectricien.fr/electricien/clermont-ferrand-63000
+https://viteunelectricien.fr/electricien/brest-29200
+https://viteunelectricien.fr/electricien/tours-37000
+https://viteunelectricien.fr/electricien/amiens-80000
+https://viteunelectricien.fr/electricien/annecy-74000
+https://viteunelectricien.fr/electricien/limoges-87000
+
+# 2026-09-22 — déjà indexées par Google, pas soumises
+https://viteunelectricien.fr/electricien/aix-en-provence-13080
+https://viteunelectricien.fr/electricien/le-mans-72000
+
+# 2026-09-22 — villes, appoint du soir
+https://viteunelectricien.fr/electricien/metz-57000
+https://viteunelectricien.fr/electricien/perpignan-66000
+
+# 2026-09-23 — arrondissements parisiens déjà indexés, pas soumis
+https://viteunelectricien.fr/electricien/paris-20e-arrondissement-75020
+https://viteunelectricien.fr/electricien/paris-13e-arrondissement-75013
+
+# 2026-09-23 — arrondissements parisiens
+https://viteunelectricien.fr/electricien/paris-18e-arrondissement-75018
+https://viteunelectricien.fr/electricien/paris-8e-arrondissement-75008
+https://viteunelectricien.fr/electricien/paris-19e-arrondissement-75019
+https://viteunelectricien.fr/electricien/paris-17e-arrondissement-75017
+https://viteunelectricien.fr/electricien/paris-11e-arrondissement-75011
+https://viteunelectricien.fr/electricien/paris-12e-arrondissement-75012
+https://viteunelectricien.fr/electricien/paris-10e-arrondissement-75010
+https://viteunelectricien.fr/electricien/paris-15e-arrondissement-75015
+https://viteunelectricien.fr/electricien/paris-16e-arrondissement-75016
+https://viteunelectricien.fr/electricien/paris-9e-arrondissement-75009
+
+# 2026-09-23 — déjà indexé par Google, pas soumis
+https://viteunelectricien.fr/electricien/paris-14e-arrondissement-75014
