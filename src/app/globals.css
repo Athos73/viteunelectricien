@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./blocs-articles.css";
 
 /*
  * Jetons repris du design Google Stitch (projet « Design System Vite
